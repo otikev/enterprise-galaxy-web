@@ -48,15 +48,38 @@
 
               <%= form_with scope: :enterprise, url: enterprises_path, local: true do |form| %>
                 <p>
-                  <%= form.label :title %><br>
-                  <%= form.text_field :title %>
+                  <%= form.label "Business Name" %><br>
+                  <%= form.text_field :business_name %>
                 </p>
-
                 <p>
-                  <%= form.label :text %><br>
-                  <%= form.text_area :text %>
+                  <%= form.label "Country" %><br>
+                  <%= form.text_field :country %>
                 </p>
-
+                <p>
+                  <%= form.label "City" %><br>
+                  <%= form.text_field :city %>
+                </p>
+                <p>
+                  <%= form.label "Postal Address" %><br>
+                  <%= form.text_field :postal_address %>
+                </p>
+                <p>
+                  <%= form.label "Postal Code" %><br>
+                  <%= form.text_field :postal_code %>
+                </p>
+                <p>
+                  <%= form.label "Office Number" %><br>
+                  <%= form.text_field :office_number %>
+                </p>
+                <hr/>
+                <p>
+                  <%= form.label "Contact Email" %><br>
+                  <%= form.text_field :contact_email %>
+                </p>
+                <p>
+                  <%= form.label "Office Phone" %><br>
+                  <%= form.text_field :office_phone %>
+                </p>
                 <p>
                   <%= form.submit %>
                 </p>
