@@ -45,8 +45,21 @@
           <div class="w3-card w3-round w3-white">
             <div class="w3-container w3-padding">
               <h6 class="w3-opacity">Please enter the enterprise details</h6>
-              <%= form_tag do %>
-                Form contents
+
+              <%= form_with scope: :enterprise, url: enterprises_path, local: true do |form| %>
+                <p>
+                  <%= form.label :title %><br>
+                  <%= form.text_field :title %>
+                </p>
+
+                <p>
+                  <%= form.label :text %><br>
+                  <%= form.text_area :text %>
+                </p>
+
+                <p>
+                  <%= form.submit %>
+                </p>
               <% end %>
             </div>
           </div>
