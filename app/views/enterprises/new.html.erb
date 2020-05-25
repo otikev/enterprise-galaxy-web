@@ -52,6 +52,14 @@
                   <%= form.text_field :business_name %>
                 </p>
                 <p>
+                  <%= form.label "Business Form" %><br>
+                  <%= form.collection_select :business_form_id, BusinessForm.all, :id, :name %>
+                </p>
+                <p>
+                  <%= form.label "Broad Sector Name" %><br>
+                  <%= form.collection_select :broad_sector_name_id, BroadSectorName.all, :id, :name %>
+                </p>
+                <p>
                   <%= form.label "Country" %><br>
                   <%= form.text_field :country %>
                 </p>
