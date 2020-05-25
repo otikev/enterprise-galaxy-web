@@ -1,0 +1,2 @@
+class BroadSectorName < ApplicationRecord
+end
