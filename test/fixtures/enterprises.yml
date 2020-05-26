@@ -12,14 +12,14 @@ one:
   office_number: MyString
   office_phone: MyString
 
-two:
-  business_name: MyString
-  contact_email: MyString
+foo_inc:
+  business_name: Foo Inc
+  contact_email: foo_inc@example.com
   start_of_operations_date: 2020-05-25
   registration_date: 2020-05-25
   postal_address: MyString
   postal_code: MyString
-  country: MyString
-  city: MyString
+  country: Kenya
+  city: Nairobi
   office_number: MyString
   office_phone: MyString

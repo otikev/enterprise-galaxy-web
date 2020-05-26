@@ -10,8 +10,14 @@ class EnterprisesController < ApplicationController
   def create
     @business_forms = BusinessForm.all
     @enterprise = Enterprise.new(enterprise_params)
-    @enterprise.save
-    redirect_to @enterprise
+    
+    if @enterprise.save
+      EnterpriseMailer.account_activation(@enterprise).deliver_now
+      flash[:info] = "Please check your email to activate your account."    
+      redirect_to @enterprise
+    else
+      render 'new'
+    end
   end
 
   private

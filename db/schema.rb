@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_132147) do
+ActiveRecord::Schema.define(version: 2020_05_26_123641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,8 +28,6 @@ ActiveRecord::Schema.define(version: 2020_05_25_132147) do
   end
 
   create_table "enterprises", force: :cascade do |t|
-    t.bigint "business_form_id"
-    t.bigint "broad_sector_name_id"
     t.string "business_name"
     t.string "contact_email"
     t.date "start_of_operations_date"
@@ -42,8 +40,9 @@ ActiveRecord::Schema.define(version: 2020_05_25_132147) do
     t.string "office_phone"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["broad_sector_name_id"], name: "index_enterprises_on_broad_sector_name_id"
-    t.index ["business_form_id"], name: "index_enterprises_on_business_form_id"
+    t.string "activation_digest"
+    t.boolean "activated"
+    t.datetime "activated_at"
   end
 
 end
