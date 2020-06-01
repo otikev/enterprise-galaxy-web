@@ -11,6 +11,10 @@ class EnterprisesController < ApplicationController
 
   end
 
+  def signup
+
+  end
+
   def show
     @enterprise = Enterprise.where(:id => params[:id]).first
   end
