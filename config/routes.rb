@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :enterprises
   resources :advisers
   match '/countdown', to: 'site#countdown', via: 'get'
-  match '/signup', to: 'enterprises#signup', via: 'get'
+  match '/signup', to: 'accounts#signup', via: 'get'
+  match '/signin', to: 'accounts#signin', via: 'get'
   match '/theme', to: 'enterprises#theme', via: 'get'
   resources :account_activations, only: [:edit]
 
