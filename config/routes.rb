@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   match '/countdown', to: 'site#countdown', via: 'get'
   match '/signup', to: 'accounts#signup', via: 'get'
   match '/signin', to: 'accounts#signin', via: 'get'
+  match '/login', to: 'accounts#login', via: 'post'
   match '/theme', to: 'enterprises#theme', via: 'get'
   resources :account_activations, only: [:edit]
 

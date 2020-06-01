@@ -7,4 +7,9 @@ class AccountsController < ApplicationController
   def signin
 
   end
+
+  def login
+
+  end
+
 end
