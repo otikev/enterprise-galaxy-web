@@ -1,0 +1,71 @@
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Enterprise Galaxy</a>
+  </div>
+</div>
+
+<!-- Navbar on small screens -->
+<div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
+</div>
+
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+  <!-- The Grid -->
+  <div class="w3-row">
+    <!-- Left Column -->
+    <div class="w3-col m3">
+
+      <!-- Accordion -->
+      <div class="w3-card w3-round">
+        <div class="w3-white">
+          <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>
+            <%= @enterprise.business_name %>
+          </button>
+        </div>
+      </div>
+      <!-- End Left Column -->
+    </div>
+
+    <!-- Middle Column -->
+    <div class="w3-col m7">
+      <div class="w3-row-padding">
+        <div class="w3-col m12">
+          <div class="w3-card w3-round w3-white">
+            <div class="w3-container w3-padding">
+              <h6 class="w3-opacity">Profile Completion Status : 50%</h6>
+            </div>
+            <div class="w3-container w3-padding">
+              <h6 class="w3-opacity">Enterprise Profile</h6>
+              <p>Business Name</p>
+              <%= @enterprise.business_name %><br/>
+              <p>Contact Email</p>
+              <%= @enterprise.contact_email %><br/>
+              <p>Start Of Operations Date</p>
+              <%= @enterprise.start_of_operations_date %><br/>
+              <p>Registration Date</p>
+              <%= @enterprise.registration_date %><br/>
+            </div><br/>
+            <div class="w3-container w3-padding">
+              <h6 class="w3-opacity">Profile Settings</h6>
+              <p>2 Factor Authentication</p>
+              <p>Disabled</p>
+            </div>
+          </div>
+        </div>
+      </div><br/>
+
+      <!-- End Middle Column -->
+    </div>
+
+    <!-- End Grid -->
+  </div>
+
+  <!-- End Page Container -->
+</div>
+<br>

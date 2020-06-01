@@ -60,8 +60,16 @@
                   <%= form.collection_select :broad_sector_name_id, BroadSectorName.all, :id, :name %>
                 </p>
                 <p>
+                  <%= form.label "Start of Operations Date" %><br>
+                  <%= form.text_field :start_of_operations_date %>
+                </p>
+                <p>
+                  <%= form.label "Date of Registration" %><br>
+                  <%= form.text_field :registration_date %>
+                </p>
+                <p>
                   <%= form.label "Country" %><br>
-                  <%= form.text_field :country %>
+                  <%= form.country_select :country, ["Kenya"]%>
                 </p>
                 <p>
                   <%= form.label "City" %><br>
