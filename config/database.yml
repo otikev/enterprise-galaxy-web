@@ -23,13 +23,13 @@ default: &default
 
 development:
   <<: *default
-  database: enterprise_galaxy_web_development
+  database: <%= ENV['EG_DEV_DB'] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  username: postgres
+  username: <%= ENV['EG_DEV_USER'] %>
   password: <%= ENV['EG_DEV_PWD'] %>
 
   # Connect on a TCP socket. Omitted by default since the client uses a
