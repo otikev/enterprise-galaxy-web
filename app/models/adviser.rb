@@ -1,0 +1,2 @@
+class Adviser < ApplicationRecord
+end
