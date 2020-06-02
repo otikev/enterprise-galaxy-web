@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_140125) do
+ActiveRecord::Schema.define(version: 2020_06_02_194620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,19 @@ ActiveRecord::Schema.define(version: 2020_06_01_140125) do
     t.datetime "activated_at"
     t.index ["broad_sector_name_id"], name: "index_enterprises_on_broad_sector_name_id"
     t.index ["business_form_id"], name: "index_enterprises_on_business_form_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_hash"
+    t.string "password_salt"
+    t.string "auth_token"
+    t.string "activated"
+    t.string "activation_token"
+    t.date "activation_token_expiry"
+    t.boolean "enabled"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
