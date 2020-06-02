@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Enterprise Galaxy</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+</head>
+
+<body class="layout-boxed-bg">
+
+<!-- Boxed layout wrapper -->
+<div class="d-flex flex-column flex-1 layout-boxed h-100">
+
+  <!-- Page content -->
+  <div class="page-content">
+    <%= yield %>
+  </div>
+  <!-- /page content -->
+
+</div>
+<!-- /boxed layout wrapper -->
+
+</body>
+</html>

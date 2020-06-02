@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
   root 'site#home'
 
-  resources :enterprises
-  resources :advisers
+  match '/enterprises/registration', to: 'auth#enterprise', via: [:get, :post]
+  match '/advisers/registration', to: 'auth#adviser', via: [:get, :post]
+  match '/signin', to: 'auth#signin', via: [:get, :post]
+  match '/signup', to: 'auth#signup', via: :get
+
   match '/countdown', to: 'site#countdown', via: 'get'
-  match '/signup', to: 'accounts#signup', via: 'get'
-  match '/signin', to: 'accounts#signin', via: 'get'
-  match '/login', to: 'accounts#login', via: 'post'
+
   match '/theme', to: 'enterprises#theme', via: 'get'
   resources :account_activations, only: [:edit]
 

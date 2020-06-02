@@ -2,8 +2,8 @@
   <div class="content-wrapper jumbotron my-auto">
     <div class="content text-center">
       <p class="w3-center"><%= image_tag('logo_transparent.png', size: "300x300", alt: "Enterprise Galaxy") %></p>
-      <%= button_to("Sign up as Enterprise",{controller:'enterprises', action:'new'}, class: "btn btn-primary col-xl-4", :method => :get) %><br/><br/>
-      <%= button_to("Sign up as Adviser",{controller:'advisers', action:'new'}, class: "btn btn-primary col-xl-4", :method => :get) %>
+      <%= button_to("Sign up as Enterprise",{controller:'auth', action:'enterprise'}, class: "btn btn-primary col-xl-4", :method => :get) %><br/>
+      <%= button_to("Sign up as Adviser",{controller:'auth', action:'adviser'}, class: "btn btn-primary col-xl-4", :method => :get) %>
     </div>
   </div>
 </div>

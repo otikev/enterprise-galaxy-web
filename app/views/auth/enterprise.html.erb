@@ -12,7 +12,7 @@
             <div class="w3-container w3-padding">
               <h6 class="w3-opacity">Please enter the enterprise details</h6>
 
-              <%= form_with scope: :enterprise, url: enterprises_path, local: true do |form| %>
+              <%= form_with scope: :enterprise, controller: 'auth', action: 'enterprise', local: true do |form| %>
                 <p>
                   <%= form.label "Business Name" %><br>
                   <%= form.text_field :business_name %>
@@ -38,29 +38,8 @@
                   <%= form.country_select :country, ["Kenya"]%>
                 </p>
                 <p>
-                  <%= form.label "City" %><br>
-                  <%= form.text_field :city %>
-                </p>
-                <p>
-                  <%= form.label "Postal Address" %><br>
-                  <%= form.text_field :postal_address %>
-                </p>
-                <p>
-                  <%= form.label "Postal Code" %><br>
-                  <%= form.text_field :postal_code %>
-                </p>
-                <p>
-                  <%= form.label "Office Number" %><br>
-                  <%= form.text_field :office_number %>
-                </p>
-                <hr/>
-                <p>
                   <%= form.label "Contact Email" %><br>
                   <%= form.text_field :contact_email %>
-                </p>
-                <p>
-                  <%= form.label "Office Phone" %><br>
-                  <%= form.text_field :office_phone %>
                 </p>
                 <p>
                   <%= form.submit "Join"%>
