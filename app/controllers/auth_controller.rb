@@ -7,6 +7,14 @@ class AuthController < ActionController::Base
 
   end
 
+  def enterprise_signup_success
+
+  end
+
+  def adviser_signup_success
+
+  end
+
   def enterprise
     if request.post?
       @enterprise = Enterprise.new(enterprise_params)
@@ -14,7 +22,7 @@ class AuthController < ActionController::Base
       if @enterprise.save
         EnterpriseMailer.account_activation(@enterprise).deliver_now
         flash[:info] = "Please check your email to activate your account."
-        redirect_to success
+        redirect_to enterprise_signup_success
       else
         render 'new'
       end
