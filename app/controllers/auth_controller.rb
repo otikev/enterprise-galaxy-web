@@ -7,27 +7,22 @@ class AuthController < ActionController::Base
 
   end
 
-  def enterprise_signup_success
-
-  end
-
-  def adviser_signup_success
+  def signup_success
 
   end
 
   def enterprise
     if request.post?
-      @enterprise = Enterprise.new(enterprise_params)
-
-      if @enterprise.save
-        EnterpriseMailer.account_activation(@enterprise).deliver_now
-        flash[:info] = "Please check your email to activate your account."
-        redirect_to enterprise_signup_success
+      @user = User.new(user_params)
+      if @user.save
+        EnterpriseMailer.account_activation(@user, @user.enterprise.business_name).deliver_now
+        flash[:success] = "Please check your email to activate your account."
+        redirect_to :controller => 'auth',:action => 'signup_success'
       else
-        render 'new'
+        render 'enterprise'
       end
     else
-      @enterprise = Enterprise.new
+      @user = User.new
     end
   end
 
@@ -43,6 +38,12 @@ class AuthController < ActionController::Base
   def enterprise_params
     params.require(:enterprise).permit(:business_name,:business_form_id,:broad_sector_name_id,
                                        :registration_date,:start_of_operations_date,:country,
-                                       :contact_email)
+                                       user_attributes:[:email,:password])
+  end
+
+  def user_params
+    params.require(:user).permit(:email,:password,
+                                 enterprise_attributes:[:business_name,:business_form_id,:broad_sector_name_id,
+                                                        :registration_date,:start_of_operations_date,:country])
   end
 end

@@ -1,8 +1,8 @@
 Welcome to Enterprise Galaxy!
 
-Hello <%= @enterprise.business_name %>,
+Hello <%= @name%>,
 
-Thank you for signing up! To activate your account, click the link below:
+Thank you for signing up to Enterprise Galaxy! To activate your account, click the link below:
 
-<%= link_to "Activate", edit_account_activation_url(@enterprise.activation_token,
-email: @enterprise.contact_email) %>
+<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
+email: @user.email) %>

@@ -3,8 +3,7 @@ Rails.application.routes.draw do
 
   match '/enterprises/registration', to: 'auth#enterprise', via: [:get, :post]
   match '/advisers/registration', to: 'auth#adviser', via: [:get, :post]
-  match '/enterprises/registration/success', to: 'auth#enterprise_signup_success', via: :get
-  match '/advisers/registration/success', to: 'auth#adviser_signup_success', via: :get
+  match '/registration/success', to: 'auth#signup_success', via: :get
   match '/signin', to: 'auth#signin', via: [:get, :post]
   match '/signup', to: 'auth#signup', via: :get
 

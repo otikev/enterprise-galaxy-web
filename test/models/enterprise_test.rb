@@ -6,7 +6,6 @@
 #  business_form_id         :integer
 #  broad_sector_name_id     :integer
 #  business_name            :string
-#  contact_email            :string
 #  start_of_operations_date :date
 #  registration_date        :date
 #  postal_address           :string
@@ -17,9 +16,7 @@
 #  office_phone             :string
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
-#  activation_digest        :string
-#  activated                :boolean
-#  activated_at             :datetime
+#  user_id                  :integer
 #
 
 require 'test_helper'

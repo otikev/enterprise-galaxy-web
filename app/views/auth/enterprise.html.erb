@@ -11,35 +11,41 @@
           <div class="w3-card w3-round w3-white">
             <div class="w3-container w3-padding">
               <h6 class="w3-opacity">Please enter the enterprise details</h6>
-
-              <%= form_with scope: :enterprise, controller: 'auth', action: 'enterprise', local: true do |form| %>
-                <p>
-                  <%= form.label "Business Name" %><br>
-                  <%= form.text_field :business_name %>
-                </p>
-                <p>
-                  <%= form.label "Business Form" %><br>
-                  <%= form.collection_select :business_form_id, BusinessForm.all, :id, :name %>
-                </p>
-                <p>
-                  <%= form.label "Broad Sector Name" %><br>
-                  <%= form.collection_select :broad_sector_name_id, BroadSectorName.all, :id, :name %>
-                </p>
-                <p>
-                  <%= form.label "Date of Registration" %><br>
-                  <%= form.text_field :registration_date %>
-                </p>
-                <p>
-                  <%= form.label "Date of start of business operations" %><br>
-                  <%= form.text_field :start_of_operations_date %>
-                </p>
-                <p>
-                  <%= form.label "Country" %><br>
-                  <%= form.country_select :country, ["Kenya"]%>
-                </p>
+              <%= form_for @user,:url => url_for(:controller => 'auth', :action => 'enterprise') do |form| %>
+                <%= render 'general/error_messages', object: form.object %>
+                <%= form.fields_for :enterprise, Enterprise.new do |enterprise_form| %>
+                  <p>
+                    <%= enterprise_form.label "Business Name" %><br>
+                    <%= enterprise_form.text_field :business_name %>
+                  </p>
+                  <p>
+                    <%= enterprise_form.label "Business Form" %><br>
+                    <%= enterprise_form.collection_select :business_form_id, BusinessForm.all, :id, :name %>
+                  </p>
+                  <p>
+                    <%= enterprise_form.label "Broad Sector Name" %><br>
+                    <%= enterprise_form.collection_select :broad_sector_name_id, BroadSectorName.all, :id, :name %>
+                  </p>
+                  <p>
+                    <%= enterprise_form.label "Date of Registration" %><br>
+                    <%= enterprise_form.text_field :registration_date %>
+                  </p>
+                  <p>
+                    <%= enterprise_form.label "Date of start of business operations" %><br>
+                    <%= enterprise_form.text_field :start_of_operations_date %>
+                  </p>
+                  <p>
+                    <%= enterprise_form.label "Country" %><br>
+                    <%= enterprise_form.country_select :country, ["Kenya"]%>
+                  </p>
+                <% end %>
                 <p>
                   <%= form.label "Contact Email" %><br>
-                  <%= form.text_field :contact_email %>
+                  <%= form.text_field :email %>
+                </p>
+                <p>
+                  <%= form.label "Contact password" %><br>
+                  <%= form.text_field :password %>
                 </p>
                 <p>
                   <%= form.submit "Join"%>

@@ -1,10 +1,10 @@
 <h1>Welcome to Enterprise Galaxy!</h1>
 
-<p>Hello <%= @enterprise.business_name %>,</p>
+<p>Hello <%= @name %>,</p>
 
 <p>
-	Thank you for signing up! To activate your account, click the link below:
+	Thank you for signing up to Enterprise Galaxy! To activate your account, click the link below:
 </p>
 
-<%= link_to "Activate", edit_account_activation_url(@enterprise.activation_token,
-contact_email: @enterprise.contact_email) %>
+<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
+contact_email: @user.email) %>

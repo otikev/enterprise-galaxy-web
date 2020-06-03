@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_02_194620) do
+ActiveRecord::Schema.define(version: 2020_06_02_201801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_06_02_194620) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
   end
 
   create_table "broad_sector_names", force: :cascade do |t|
@@ -37,7 +38,6 @@ ActiveRecord::Schema.define(version: 2020_06_02_194620) do
     t.bigint "business_form_id"
     t.bigint "broad_sector_name_id"
     t.string "business_name"
-    t.string "contact_email"
     t.date "start_of_operations_date"
     t.date "registration_date"
     t.string "postal_address"
@@ -48,9 +48,7 @@ ActiveRecord::Schema.define(version: 2020_06_02_194620) do
     t.string "office_phone"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "activation_digest"
-    t.boolean "activated"
-    t.datetime "activated_at"
+    t.integer "user_id"
     t.index ["broad_sector_name_id"], name: "index_enterprises_on_broad_sector_name_id"
     t.index ["business_form_id"], name: "index_enterprises_on_business_form_id"
   end
