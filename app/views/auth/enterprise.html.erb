@@ -1,67 +1,101 @@
+<!-- Main content -->
+<div class="content-wrapper">
 
-<!-- Page Container -->
-<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
-  <!-- The Grid -->
-  <div class="w3-row">
+  <!-- Content area -->
+  <div class="content d-flex justify-content-center align-items-center">
 
-    <!-- Middle Column -->
-    <div class="w3-col m7">
-      <div class="w3-row-padding">
-        <div class="w3-col m12">
-          <div class="w3-card w3-round w3-white">
-            <div class="w3-container w3-padding">
-              <h6 class="w3-opacity">Please enter the enterprise details</h6>
-              <%= form_for @user,:url => url_for(:controller => 'auth', :action => 'enterprise') do |form| %>
-                <%= render 'general/error_messages', object: form.object %>
-                <%= form.fields_for :enterprise, Enterprise.new do |enterprise_form| %>
-                  <p>
-                    <%= enterprise_form.label "Business Name" %><br>
-                    <%= enterprise_form.text_field :business_name %>
-                  </p>
-                  <p>
-                    <%= enterprise_form.label "Business Form" %><br>
-                    <%= enterprise_form.collection_select :business_form_id, BusinessForm.all, :id, :name %>
-                  </p>
-                  <p>
-                    <%= enterprise_form.label "Broad Sector Name" %><br>
-                    <%= enterprise_form.collection_select :broad_sector_name_id, BroadSectorName.all, :id, :name %>
-                  </p>
-                  <p>
-                    <%= enterprise_form.label "Date of Registration" %><br>
-                    <%= enterprise_form.text_field :registration_date %>
-                  </p>
-                  <p>
-                    <%= enterprise_form.label "Date of start of business operations" %><br>
-                    <%= enterprise_form.text_field :start_of_operations_date %>
-                  </p>
-                  <p>
-                    <%= enterprise_form.label "Country" %><br>
-                    <%= enterprise_form.country_select :country, ["Kenya"]%>
-                  </p>
-                <% end %>
-                <p>
-                  <%= form.label "Contact Email" %><br>
-                  <%= form.text_field :email %>
-                </p>
-                <p>
-                  <%= form.label "Contact password" %><br>
-                  <%= form.text_field :password %>
-                </p>
-                <p>
-                  <%= form.submit "Join"%>
-                </p>
-              <% end %>
+    <!-- Registration form -->
+    <form class="signup-form" action="" method="post">
+      <div class="card mb-0">
+        <div class="card-body">
+          <div class="text-center mb-3">
+            <%= image_tag('logo_transparent.png', width: "100", alt: "Enterprise Galaxy") %>
+            <h5 class="mb-0">Create Enterprise Account</h5>
+            <span class="d-block text-muted">All fields are required</span>
+          </div>
+
+          <div class="form-group text-center text-muted content-divider">
+            <span class="px-2">Your credentials</span>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-lg-4 col-form-label"><i class="icon-mention text-muted"></i> Contact Email:</label>
+            <div class="col-lg-8">
+              <input type="text" class="form-control" placeholder="Contatact Email">
             </div>
           </div>
+
+          <div class="form-group row">
+            <label class="col-lg-4 col-form-label"><i class="icon-user-lock text-muted"></i> Contact Password:</label>
+            <div class="col-lg-8">
+              <input type="password" class="form-control" placeholder="Contact Password">
+            </div>
+          </div>
+
+          <div class="form-group text-center text-muted content-divider">
+            <span class="px-2">Business Details</span>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-lg-4 col-form-label"><i class="icon-office text-muted"></i> Business Name:</label>
+            <div class="col-lg-8">
+              <input type="text" class="form-control" placeholder="Business Name">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-lg-4 col-form-label"><i class="icon-list text-muted"></i>  Business:</label>
+            <div class="col-lg-8">
+              <select class="form-control" placeholder="Business Form">
+                <option selected value="0">Select Business </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-lg-4 col-form-label"><i class="icon-list text-muted"></i>  Broad Selector:</label>
+            <div class="col-lg-8">
+              <select class="form-control" placeholder="Broad Selector Name">
+                <option selected value="0">Select Broad Selector Name </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-lg-4 col-form-label"><i class="icon-calendar text-muted"></i>  Date of Registration:</label>
+            <div class="col-lg-8">
+              <input type="date" class="form-control" placeholder="Date of Registration">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-lg-4 col-form-label"><i class="icon-calendar text-muted"></i>  Date of Operations:</label>
+            <div class="col-lg-8">
+              <input type="date" class="form-control" placeholder="Date of business operations">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-lg-4 col-form-label"><i class="icon-list text-muted"></i>  Country:</label>
+            <div class="col-lg-8">
+              <select class="form-control" placeholder="Broad Country">
+                <option selected value="0">Select Country </option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Register <i class="icon-circle-right2 ml-2"></i></button>
+          <div class="form-group d-flex align-items-center">
+            <a href="signin.html" class="ml-auto">Login?</a>
+          </div>
         </div>
-      </div><br/>
+      </div>
+    </form>
+    <!-- /registration form -->
 
-      <!-- End Middle Column -->
-    </div>
-
-    <!-- End Grid -->
   </div>
+  <!-- /content area -->
 
-  <!-- End Page Container -->
+
 </div>
-<br>
+<!-- /main content -->
