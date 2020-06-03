@@ -19,6 +19,8 @@ class User < ApplicationRecord
   require 'utils'
 
   has_one :enterprise
+  has_one :adviser
+
   accepts_nested_attributes_for :enterprise
 
   before_save :downcase_email
