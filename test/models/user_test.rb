@@ -13,6 +13,7 @@
 #  enabled                 :boolean
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
+#  two_factor              :boolean          default("false")
 #
 
 require 'test_helper'

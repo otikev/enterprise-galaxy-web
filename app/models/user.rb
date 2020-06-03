@@ -13,6 +13,7 @@
 #  enabled                 :boolean
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
+#  two_factor              :boolean          default("false")
 #
 
 class User < ApplicationRecord
@@ -22,6 +23,7 @@ class User < ApplicationRecord
   has_one :adviser
 
   accepts_nested_attributes_for :enterprise
+  accepts_nested_attributes_for :adviser
 
   before_save :downcase_email
   before_create :create_activation_digest, :set_password

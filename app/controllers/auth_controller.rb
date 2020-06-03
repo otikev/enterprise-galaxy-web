@@ -26,11 +26,11 @@ class AuthController < ActionController::Base
     if request.post?
       @user = User.new(user_params)
       if @user.save
-        EnterpriseMailer.account_activation(@user, @user.enterprise.business_name).deliver_now
+        EnterpriseMailer.account_activation(@user, @user.adviser.name).deliver_now
         flash[:success] = "Registration success! Please check your email to activate your account."
         redirect_to :controller => 'auth',:action => 'signin'
       else
-        render 'enterprise'
+        render 'adviser'
       end
     else
       @user = User.new
