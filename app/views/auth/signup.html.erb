@@ -1,9 +1,30 @@
-<div class="container h-100 d-flex justify-content-center">
-  <div class="content-wrapper jumbotron my-auto">
-    <div class="content text-center">
-      <p class="w3-center"><%= image_tag('logo_transparent.png', size: "300x300", alt: "Enterprise Galaxy") %></p>
-      <%= button_to("Sign up as Enterprise",{controller:'auth', action:'enterprise'}, class: "btn btn-primary col-xl-4", :method => :get) %><br/>
-      <%= button_to("Sign up as Adviser",{controller:'auth', action:'adviser'}, class: "btn btn-primary col-xl-4", :method => :get) %>
-    </div>
+<!-- Main content -->
+<div class="content-wrapper">
+
+  <!-- Content area -->
+  <div class="content d-flex justify-content-center align-items-center">
+
+    <!-- Password recovery form -->
+    <form class="login-form" action="index.html">
+      <div class="card mb-0">
+        <div class="card-body">
+          <div class="text-center mb-3">
+            <%= image_tag('logo_transparent.png', width: "100", alt: "Enterprise Galaxy") %>
+            <h5 class="mb-0">Signup options</h5>
+            <span class="d-block text-muted">How do you want to sign up?</span>
+          </div>
+          <a href="/enterprises/registration" class="btn btn-primary btn-block">As Enterprise <i class="icon-circle-right2 ml-2"></i></a>
+          <a href="advisers/registration" class="btn btn-primary btn-block">As Adviser <i class="icon-circle-right2 ml-2"></i></a>
+          <div class="form-group d-flex align-items-center">
+            <a href="signin.html" class="ml-auto">Login?</a>
+          </div>
+        </div>
+      </div>
+    </form>
+    <!-- /password recovery form -->
+
   </div>
+  <!-- /content area -->
+
 </div>
+<!-- /main content -->
