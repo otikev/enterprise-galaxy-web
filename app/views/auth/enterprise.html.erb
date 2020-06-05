@@ -78,20 +78,17 @@
             </div>
           <% end %>
         </div>
-        <%= button_tag( :class => "btn btn-primary btn-block") do %>
+        <%= button_tag(:class => "btn btn-primary btn-block") do %>
           Join <i class="icon-circle-right2 ml-2"></i>
         <% end %>
 
           <div class="form-group d-flex align-items-center col-1">
-            <a href="signin.html" class="ml-auto">Login?</a>
+            <%= link_to "Login?", signin_path, class: "ml-auto" %>
           </div>
         </div>
       </div>
     <% end %>
-
   </div>
   <!-- /content area -->
-
-
 </div>
 <!-- /main content -->
