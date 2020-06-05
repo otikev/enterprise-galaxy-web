@@ -13,21 +13,18 @@
             <h5 class="mb-0">Signup options</h5>
             <span class="d-block text-muted">How do you want to sign up?</span>
           </div>
-          <%= link_to "/enterprises/registration", class: "btn btn-primary btn-block" do %>
-            As Enterprise <i class="icon-circle-right2 ml-2"></i>
-          <% end %>
-          <%= link_to "advisers/registration", class: "btn btn-primary btn-block" do %>
-            As Adviser <i class="icon-circle-right2 ml-2"></i>
-          <% end %>
-          <br/>
-          <div class="form-group d-flex align-items-center col-1">
-            <%= link_to "Login?", signin_path, class: "ml-auto" %>
+          <a href="/enterprises/registration" class="btn btn-primary btn-block">As Enterprise <i class="icon-circle-right2 ml-2"></i></a>
+          <a href="advisers/registration" class="btn btn-primary btn-block">As Adviser <i class="icon-circle-right2 ml-2"></i></a>
+          <div class="form-group d-flex align-items-center">
+            <a href="signin.html" class="ml-auto">Login?</a>
           </div>
         </div>
       </div>
     </form>
     <!-- /password recovery form -->
+
   </div>
   <!-- /content area -->
+
 </div>
 <!-- /main content -->

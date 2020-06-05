@@ -1,0 +1,67 @@
+
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+  <!-- The Grid -->
+  <div class="w3-row">
+
+    <!-- Middle Column -->
+    <div class="w3-col m7">
+      <div class="w3-row-padding">
+        <div class="w3-col m12">
+          <div class="w3-card w3-round w3-white">
+            <div class="w3-container w3-padding">
+              <h6 class="w3-opacity">Please enter the enterprise details</h6>
+              <%= form_for @user,:url => url_for(:controller => 'auth', :action => 'enterprise') do |form| %>
+                <%= render 'general/error_messages', object: form.object %>
+                <%= form.fields_for :enterprise, Enterprise.new do |enterprise_form| %>
+                  <p>
+                    <%= enterprise_form.label "Business Name" %><br>
+                    <%= enterprise_form.text_field :business_name %>
+                  </p>
+                  <p>
+                    <%= enterprise_form.label "Business Form" %><br>
+                    <%= enterprise_form.collection_select :business_form_id, BusinessForm.all, :id, :name %>
+                  </p>
+                  <p>
+                    <%= enterprise_form.label "Broad Sector Name" %><br>
+                    <%= enterprise_form.collection_select :broad_sector_name_id, BroadSectorName.all, :id, :name %>
+                  </p>
+                  <p>
+                    <%= enterprise_form.label "Date of Registration" %><br>
+                    <%= enterprise_form.text_field :registration_date %>
+                  </p>
+                  <p>
+                    <%= enterprise_form.label "Date of start of business operations" %><br>
+                    <%= enterprise_form.text_field :start_of_operations_date %>
+                  </p>
+                  <p>
+                    <%= enterprise_form.label "Country" %><br>
+                    <%= enterprise_form.country_select :country, ["Kenya"]%>
+                  </p>
+                <% end %>
+                <p>
+                  <%= form.label "Contact Email" %><br>
+                  <%= form.text_field :email %>
+                </p>
+                <p>
+                  <%= form.label "Contact password" %><br>
+                  <%= form.text_field :password %>
+                </p>
+                <p>
+                  <%= form.submit "Join"%>
+                </p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div><br/>
+
+      <!-- End Middle Column -->
+    </div>
+
+    <!-- End Grid -->
+  </div>
+
+  <!-- End Page Container -->
+</div>
+<br>
