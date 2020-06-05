@@ -3,9 +3,7 @@
 
   <!-- Content area -->
   <div class="content d-flex justify-content-center align-items-center">
-
-    <!-- Registration form -->
-    <form class="signup-form" action="" method="post">
+    <%= form_for @user,:html => {:class => 'signup-form'}, :url => url_for(:controller => 'auth', :action => 'enterprise', ) do |form| %>
       <div class="card mb-0">
         <div class="card-body">
           <div class="text-center mb-3">
@@ -14,88 +12,83 @@
             <span class="d-block text-muted">All fields are required</span>
           </div>
 
+          <%= render 'general/error_messages', object: form.object %>
+
           <div class="form-group text-center text-muted content-divider">
             <span class="px-2">Your credentials</span>
           </div>
-
           <div class="form-group row">
             <label class="col-lg-4 col-form-label"><i class="icon-mention text-muted"></i> Contact Email:</label>
             <div class="col-lg-8">
-              <input type="text" class="form-control" placeholder="Contatact Email">
+              <%= form.text_field :email,placeholder: "Contact Email",class: "form-control" %>
             </div>
           </div>
-
           <div class="form-group row">
             <label class="col-lg-4 col-form-label"><i class="icon-user-lock text-muted"></i> Contact Password:</label>
             <div class="col-lg-8">
-              <input type="password" class="form-control" placeholder="Contact Password">
+              <%= form.password_field :password ,placeholder: "Contact Password", class: "form-control" %>
             </div>
           </div>
-
+          <div class="form-group row">
+            <label class="col-lg-4 col-form-label"><i class="icon-user-lock text-muted"></i>Password Confirmation:</label>
+            <div class="col-lg-8">
+              <%= form.password_field :password_confirmation ,placeholder: "Confirm Password", class: "form-control" %>
+            </div>
+          </div>
           <div class="form-group text-center text-muted content-divider">
             <span class="px-2">Business Details</span>
           </div>
 
-          <div class="form-group row">
-            <label class="col-lg-4 col-form-label"><i class="icon-office text-muted"></i> Business Name:</label>
-            <div class="col-lg-8">
-              <input type="text" class="form-control" placeholder="Business Name">
+          <%= form.fields_for :enterprise, Enterprise.new do |enterprise_form| %>
+            <div class="form-group row">
+              <label class="col-lg-4 col-form-label"><i class="icon-office text-muted"></i> Business Name:</label>
+              <div class="col-lg-8">
+                <%= enterprise_form.text_field :business_name, placeholder: "Business Name", class: "form-control"  %>
+              </div>
             </div>
-          </div>
-
-          <div class="form-group row">
-            <label class="col-lg-4 col-form-label"><i class="icon-list text-muted"></i>  Business:</label>
-            <div class="col-lg-8">
-              <select class="form-control" placeholder="Business Form">
-                <option selected value="0">Select Business </option>
-              </select>
+            <div class="form-group row">
+              <label class="col-lg-4 col-form-label"><i class="icon-list text-muted"></i>  Business Form:</label>
+              <div class="col-lg-8">
+                <%= enterprise_form.collection_select :business_form_id, BusinessForm.all, :id, :name,{prompt: "Select Business" }, {class: "form-control"} %>
+              </div>
             </div>
-          </div>
-
-          <div class="form-group row">
-            <label class="col-lg-4 col-form-label"><i class="icon-list text-muted"></i>  Broad Selector:</label>
-            <div class="col-lg-8">
-              <select class="form-control" placeholder="Broad Selector Name">
-                <option selected value="0">Select Broad Selector Name </option>
-              </select>
+            <div class="form-group row">
+              <label class="col-lg-4 col-form-label"><i class="icon-list text-muted"></i>  Broad Sector:</label>
+              <div class="col-lg-8">
+                <%= enterprise_form.collection_select :broad_sector_name_id, BroadSectorName.all, :id, :name, {prompt: "Select Broad Sector" }, {class: "form-control"} %>
+              </div>
             </div>
-          </div>
-
-          <div class="form-group row">
-            <label class="col-lg-4 col-form-label"><i class="icon-calendar text-muted"></i>  Date of Registration:</label>
-            <div class="col-lg-8">
-              <input type="date" class="form-control" placeholder="Date of Registration">
+            <div class="form-group row">
+              <label class="col-lg-4 col-form-label"><i class="icon-calendar text-muted"></i>  Date of Registration:</label>
+              <div class="col-lg-8">
+                <%= enterprise_form.date_field :registration_date, class: "form-control",placeholder: "Date of Registration" %>
+              </div>
             </div>
-          </div>
-
-          <div class="form-group row">
-            <label class="col-lg-4 col-form-label"><i class="icon-calendar text-muted"></i>  Date of Operations:</label>
-            <div class="col-lg-8">
-              <input type="date" class="form-control" placeholder="Date of business operations">
+            <div class="form-group row">
+              <label class="col-lg-4 col-form-label"><i class="icon-calendar text-muted"></i>  Start of Business Operations:</label>
+              <div class="col-lg-8">
+                <%= enterprise_form.date_field :start_of_operations_date, class: "form-control",placeholder: "Date of Registration" %>
+              </div>
             </div>
-          </div>
-
-          <div class="form-group row">
-            <label class="col-lg-4 col-form-label"><i class="icon-list text-muted"></i>  Country:</label>
-            <div class="col-lg-8">
-              <select class="form-control" placeholder="Broad Country">
-                <option selected value="0">Select Country </option>
-              </select>
+            <div class="form-group row">
+              <label class="col-lg-4 col-form-label"><i class="icon-list text-muted"></i>  Country:</label>
+              <div class="col-lg-8">
+                <%= enterprise_form.country_select :country, ["Kenya"], {prompt: "Select Country" }, {class: "form-control"} %>
+              </div>
             </div>
-          </div>
+          <% end %>
+        </div>
+        <%= button_tag(:class => "btn btn-primary btn-block") do %>
+          Join <i class="icon-circle-right2 ml-2"></i>
+        <% end %>
 
-          <button type="submit" class="btn btn-primary btn-block">Register <i class="icon-circle-right2 ml-2"></i></button>
-          <div class="form-group d-flex align-items-center">
-            <a href="signin.html" class="ml-auto">Login?</a>
+          <div class="form-group d-flex align-items-center col-1">
+            <%= link_to "Login?", signin_path, class: "ml-auto" %>
           </div>
         </div>
       </div>
-    </form>
-    <!-- /registration form -->
-
+    <% end %>
   </div>
   <!-- /content area -->
-
-
 </div>
 <!-- /main content -->
