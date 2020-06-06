@@ -18,20 +18,20 @@
             <span class="px-2">Your credentials</span>
           </div>
           <div class="form-group row">
-            <label class="col-lg-4 col-form-label"><i class="icon-mention text-muted"></i> Contact Email:</label>
-            <div class="col-lg-8">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-mention text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Email:</label>
+            <div class="col-lg-7">
               <%= form.text_field :email,placeholder: "Contact Email",class: "form-control" %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-4 col-form-label"><i class="icon-user-lock text-muted"></i> Contact Password:</label>
-            <div class="col-lg-8">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-user-lock text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Password:</label>
+            <div class="col-lg-7">
               <%= form.password_field :password ,placeholder: "Contact Password", class: "form-control" %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-4 col-form-label"><i class="icon-user-lock text-muted"></i>Password Confirmation:</label>
-            <div class="col-lg-8">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-user-lock text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password Confirmation:</label>
+            <div class="col-lg-7">
               <%= form.password_field :password_confirmation ,placeholder: "Confirm Password", class: "form-control" %>
             </div>
           </div>
@@ -41,50 +41,53 @@
 
           <%= form.fields_for :enterprise, Enterprise.new do |enterprise_form| %>
             <div class="form-group row">
-              <label class="col-lg-4 col-form-label"><i class="icon-office text-muted"></i> Business Name:</label>
-              <div class="col-lg-8">
+              <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business Name:</label>
+              <div class="col-lg-7">
                 <%= enterprise_form.text_field :business_name, placeholder: "Business Name", class: "form-control"  %>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-lg-4 col-form-label"><i class="icon-list text-muted"></i>  Business Form:</label>
-              <div class="col-lg-8">
+              <label class="col-lg-5 col-form-label text-right"><i class="icon-list text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business Form:</label>
+              <div class="col-lg-7">
                 <%= enterprise_form.collection_select :business_form_id, BusinessForm.all, :id, :name,{prompt: "Select Business" }, {class: "form-control"} %>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-lg-4 col-form-label"><i class="icon-list text-muted"></i>  Broad Sector:</label>
-              <div class="col-lg-8">
+              <label class="col-lg-5 col-form-label text-right"><i class="icon-list text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Broad Sector:</label>
+              <div class="col-lg-7">
                 <%= enterprise_form.collection_select :broad_sector_name_id, BroadSectorName.all, :id, :name, {prompt: "Select Broad Sector" }, {class: "form-control"} %>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-lg-4 col-form-label"><i class="icon-calendar text-muted"></i>  Date of Registration:</label>
-              <div class="col-lg-8">
+              <label class="col-lg-5 col-form-label text-right"><i class="icon-calendar text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date of Registration:</label>
+              <div class="col-lg-7">
                 <%= enterprise_form.date_field :registration_date, class: "form-control",placeholder: "Date of Registration" %>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-lg-4 col-form-label"><i class="icon-calendar text-muted"></i>  Start of Business Operations:</label>
-              <div class="col-lg-8">
+              <label class="col-lg-5 col-form-label text-right"><i class="icon-calendar text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Start of Business Operations:</label>
+              <div class="col-lg-7">
                 <%= enterprise_form.date_field :start_of_operations_date, class: "form-control",placeholder: "Date of Registration" %>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-lg-4 col-form-label"><i class="icon-list text-muted"></i>  Country:</label>
-              <div class="col-lg-8">
+              <label class="col-lg-5 col-form-label text-right"><i class="icon-list text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Country:</label>
+              <div class="col-lg-7">
                 <%= enterprise_form.country_select :country, ["Kenya"], {prompt: "Select Country" }, {class: "form-control"} %>
               </div>
             </div>
           <% end %>
-        </div>
-        <%= button_tag( :class => "btn btn-primary btn-block") do %>
-          Join <i class="icon-circle-right2 ml-2"></i>
-        <% end %>
-
-          <div class="form-group d-flex align-items-center col-1">
-            <a href="signin.html" class="ml-auto">Login?</a>
+          <%= button_tag(:class => "btn bg-teal-400 btn-block") do %>
+            Join <i class="icon-circle-right2 ml-2"></i>
+          <% end %>
+          <br/>
+          <div class="form-group text-center text-muted content-divider">
+            <span class="px-2">Already have an account?</span>
           </div>
+          <div class="form-group d-flex align-items-center">
+            <%= link_to "Login", signin_path, class: "btn btn-primary btn-block col-12" %>
+          </div>
+        </div>
         </div>
       </div>
     <% end %>
