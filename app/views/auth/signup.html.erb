@@ -12,8 +12,12 @@
           </div>
           <a href="/enterprises/registration" class="btn btn-primary btn-block">As Enterprise <i class="icon-circle-right2 ml-2"></i></a>
           <a href="advisers/registration" class="btn btn-primary btn-block">As Adviser <i class="icon-circle-right2 ml-2"></i></a>
+          <br/>
+          <div class="form-group text-center text-muted content-divider">
+            <span class="px-2">Already have an account?</span>
+          </div>
           <div class="form-group d-flex align-items-center">
-            <a href="signin.html" class="ml-auto">Login?</a>
+            <%= link_to "Sign In", signin_path, class: "btn btn-transparent border-success text-success btn-block col-12" %>
           </div>
         </div>
       </div>
