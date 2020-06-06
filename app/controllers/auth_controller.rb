@@ -43,6 +43,7 @@ class AuthController < ActionController::Base
     params.require(:user).permit(:email,:password,
                                  enterprise_attributes:[:business_name,:business_form_id,:broad_sector_name_id,
                                                         :registration_date,:start_of_operations_date,:country],
-                                 adviser_attributes:[:title,:first_name,:other_names,:date_of_birth,:cell_phone])
+                                 adviser_attributes:[:title,:first_name,:other_names,:date_of_birth,:cell_phone,
+                                                     :country_of_residence])
   end
 end

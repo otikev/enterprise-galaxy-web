@@ -1,1 +1,100 @@
-Adviser form here
+<!-- Main content -->
+<div class="content-wrapper">
+
+  <!-- Content area -->
+  <div class="content d-flex justify-content-center align-items-center">
+    <%= form_for @user,:html => {:class => 'signup-form'}, :url => url_for(:controller => 'auth', :action => 'adviser', ) do |form| %>
+      <div class="card mb-0">
+        <div class="card-body">
+          <div class="text-center mb-3">
+            <%= image_tag('logo_transparent.png', width: "100", alt: "Enterprise Galaxy") %>
+            <h5 class="mb-0">Create Adviser Account</h5>
+            <span class="d-block text-muted">All fields are required</span>
+          </div>
+
+          <%= render 'general/error_messages', object: form.object %>
+
+          <div class="form-group text-center text-muted content-divider">
+            <span class="px-2">Your credentials</span>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-mention text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Email:</label>
+            <div class="col-lg-7">
+              <%= form.text_field :email,placeholder: "Contact Email",class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-user-lock text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Password:</label>
+            <div class="col-lg-7">
+              <%= form.password_field :password ,placeholder: "Contact Password", class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-user-lock text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password Confirmation:</label>
+            <div class="col-lg-7">
+              <%= form.password_field :password_confirmation ,placeholder: "Confirm Password", class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group text-center text-muted content-divider">
+            <span class="px-2">Adviser Details</span>
+          </div>
+
+          <%= form.fields_for :adviser, Adviser.new do |adviser_form| %>
+            <div class="form-group row">
+              <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Title:</label>
+              <div class="col-lg-7">
+                <%= adviser_form.select :title,[['Mr.',1],['Mrs.',2],['Ms.',3],['Dr.',4],['Rev.',4]], {prompt: "Select Title" }, {class: "form-control"} %>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;First Name:</label>
+              <div class="col-lg-7">
+                <%= adviser_form.text_field :first_name, placeholder: "First Name", class: "form-control"  %>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Other Names:</label>
+              <div class="col-lg-7">
+                <%= adviser_form.text_field :other_names, placeholder: "Other Names", class: "form-control"  %>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-lg-5 col-form-label text-right"><i class="icon-calendar text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date Of Birth:</label>
+              <div class="col-lg-7">
+                <%= adviser_form.date_field :date_of_birth, class: "form-control",placeholder: "Date of Birth" %>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cell Phone:</label>
+              <div class="col-lg-7">
+                <%= adviser_form.text_field :cell_phone, placeholder: "Cell Phone", class: "form-control"  %>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-lg-5 col-form-label text-right"><i class="icon-list text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Country of residence:</label>
+              <div class="col-lg-7">
+                <%= adviser_form.country_select :country_of_residence, ["Kenya"], {prompt: "Select Country" }, {class: "form-control"} %>
+              </div>
+            </div>
+          <% end %>
+
+          <%= button_tag(:class => "btn bg-teal-400 btn-block") do %>
+            Join <i class="icon-circle-right2 ml-2"></i>
+          <% end %>
+
+          <br/>
+          <div class="form-group text-center text-muted content-divider">
+            <span class="px-2">Already have an account?</span>
+          </div>
+          <div class="form-group d-flex align-items-center">
+            <%= link_to "Login", signin_path, class: "btn btn-primary btn-block col-12" %>
+          </div>
+        </div>
+      </div>
+      </div>
+    <% end %>
+
+    </div>
+<!-- /content area -->
+</div>
+<!-- /main content -->
