@@ -20,17 +20,19 @@
 
 <!-- Page content -->
 <div class="page-content">
-  <div>
-    <% flash.each do |key, value| %>
-      <% if value.is_a?(String) %>
-        <div class="text-center alert alert-<%= key %> ">
-          <a class="close" data-dismiss="alert">&#215;</a>
-          <%= content_tag :div, simple_format(value), :id => "flash_#{key}" %>
-        </div>
+  <div class="content-wrapper">
+    <div>
+      <% flash.each do |key, value| %>
+        <% if value.is_a?(String) %>
+          <div class="text-center alert alert-<%= key %> ">
+            <a class="close" data-dismiss="alert">&#215;</a>
+            <%= content_tag :div, simple_format(value), :id => "flash_#{key}" %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+    <%= yield %>
   </div>
-  <%= yield %>
 </div>
 <!-- /page content -->
 

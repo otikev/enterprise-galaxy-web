@@ -21,4 +21,11 @@
 
 class Enterprise < ApplicationRecord
 	belongs_to :user
+
+	validates :business_name, :presence =>true
+	validates :business_form_id, :presence =>true
+	validates :broad_sector_name_id, :presence =>true
+	validates :registration_date, :presence =>true
+	validates :start_of_operations_date, :presence =>true
+	validates :country, :presence =>true
 end

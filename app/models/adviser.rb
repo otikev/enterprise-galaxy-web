@@ -26,4 +26,11 @@
 
 class Adviser < ApplicationRecord
   belongs_to :user
+
+  validates :title, :presence =>true
+  validates :first_name, :presence =>true
+  validates :other_names, :presence =>true
+  validates :date_of_birth, :presence =>true
+  validates :cell_phone, :presence =>true
+  validates :country_of_residence, :presence =>true
 end

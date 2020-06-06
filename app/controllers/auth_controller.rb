@@ -19,6 +19,7 @@ class AuthController < ActionController::Base
       end
     else
       @user = User.new
+      @enterprise = Enterprise.new
     end
   end
 
@@ -26,7 +27,7 @@ class AuthController < ActionController::Base
     if request.post?
       @user = User.new(user_params)
       if @user.save
-        EnterpriseMailer.account_activation(@user, @user.adviser.name).deliver_now
+        EnterpriseMailer.account_activation(@user, @user.adviser.first_name).deliver_now
         flash[:success] = "Registration success! Please check your email to activate your account."
         redirect_to :controller => 'auth',:action => 'signin'
       else
@@ -34,16 +35,17 @@ class AuthController < ActionController::Base
       end
     else
       @user = User.new
+      @adviser = Adviser.new
     end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:email,:password,
-                                 enterprise_attributes:[:business_name,:business_form_id,:broad_sector_name_id,
-                                                        :registration_date,:start_of_operations_date,:country],
-                                 adviser_attributes:[:title,:first_name,:other_names,:date_of_birth,:cell_phone,
-                                                     :country_of_residence])
+    params.require(:user).permit(:email,:password,:password_confirmation,
+                                 {enterprise_attributes:[:business_name,:business_form_id,:broad_sector_name_id,
+                                                        :registration_date,:start_of_operations_date,:country]},
+                                 {adviser_attributes:[:title,:first_name,:other_names,:date_of_birth,:cell_phone,
+                                                     :country_of_residence]})
   end
 end

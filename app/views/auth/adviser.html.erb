@@ -39,7 +39,7 @@
             <span class="px-2">Adviser Details</span>
           </div>
 
-          <%= form.fields_for :adviser, Adviser.new do |adviser_form| %>
+          <%= form.fields_for :adviser, @adviser do |adviser_form| %>
             <div class="form-group row">
               <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Title:</label>
               <div class="col-lg-7">
