@@ -1,6 +1,40 @@
 class AuthController < ActionController::Base
   def signin
+    if request.post?
+      email = params[:user][:email]
+      password = params[:user][:password]
+      if !email || email == '' || !password || password == ''
+        flash.now[:warning]='You must provide an email and password'
+        @user = User.new
+      else
+        user = User.where(email: email).first
 
+        if user
+          @user = user.authenticate(password, true)
+          if @user
+            if !@user.enabled
+              cookies.delete(:auth_token)
+              @user = nil
+              flash.now[:danger] = 'Your account has been disabled'
+              @user = User.new
+            else
+              cookies[:auth_token] = @user.auth_token
+              redirect_to dashboard_path and return true
+            end
+          else
+            #user found but password is incorrect
+            flash.now[:danger]='Invalid username or password'
+            @user = User.new
+          end
+        else
+          #user with email and role not found in db
+          flash.now[:danger]='Invalid username or password'
+          @user = User.new
+        end
+      end
+    else
+      @user = User.new
+    end
   end
 
   def signup

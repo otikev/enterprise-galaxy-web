@@ -32,6 +32,19 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: Utils::VALID_EMAIL_REGEX },uniqueness: { case_sensitive: false }
   validates :password, :presence =>true,:length => { :minimum => 5, :maximum => 40 },:confirmation =>true
 
+  def authenticate(pass,generate_new_token)
+
+    if User.digest(pass + self.password_salt) == self.password_hash
+      if generate_new_token
+        generate_auth_token
+        update_attribute('auth_token', self.auth_token)
+      end
+      self
+    else
+      nil
+    end
+  end
+
   def send_activate
     #Don't send activation emails if user already activated
     if !activated
