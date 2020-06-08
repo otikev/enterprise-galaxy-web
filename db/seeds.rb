@@ -27,5 +27,3 @@ BroadSectorName.create(name: 'Transport, Export/Import and Storage Services')
 BroadSectorName.create(name: 'Education and Training Services')
 BroadSectorName.create(name: 'Public Administration (Government)')
 BroadSectorName.create(name: 'Other (Specify)')
-
-Enterprise.create(business_name: "Fizz Inc", contact_email: "fizz_inc@example.com")
