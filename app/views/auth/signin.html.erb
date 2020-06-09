@@ -11,6 +11,8 @@
             <span class="d-block text-muted">Your credentials</span>
           </div>
 
+          <%= render 'general/error_messages', object: f.object %>
+
           <div class="form-group form-group-feedback form-group-feedback-left">
             <%= f.text_field :email, class:"form-control", placeholder:"Email", :required=>true %>
             <div class="form-control-feedback">

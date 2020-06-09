@@ -14,22 +14,21 @@ class AuthController < ActionController::Base
           if @user
             if !@user.enabled
               cookies.delete(:auth_token)
-              @user = nil
-              flash.now[:danger] = 'Your account has been disabled'
               @user = User.new
+              @user.errors[:base] << "Your account has been disabled"
             else
               cookies[:auth_token] = @user.auth_token
               redirect_to dashboard_path and return true
             end
           else
             #user found but password is incorrect
-            flash.now[:danger]='Invalid username or password'
             @user = User.new
+            @user.errors[:base] << "Invalid username or password 1"
           end
         else
           #user with email and role not found in db
-          flash.now[:danger]='Invalid username or password'
           @user = User.new
+          @user.errors[:base] << "Invalid username or password 2"
         end
       end
     else
