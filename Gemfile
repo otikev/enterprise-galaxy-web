@@ -21,6 +21,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 
+gem 'mailjet', :git => 'https://github.com/mailjet/mailjet-gem.git'
+
 gem 'country-select'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
