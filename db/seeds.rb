@@ -28,4 +28,4 @@ BroadSectorName.create(name: 'Education and Training Services')
 BroadSectorName.create(name: 'Public Administration (Government)')
 BroadSectorName.create(name: 'Other (Specify)')
 
-Enterprise.create(business_name: "Fizz Inc", contact_email: "fizz_inc@example.com")
+User.create(email: 'admin@enterprisegalaxy.com', password_hash: User.digest("admin" + "rehYnfjHjjHg"), password_salt: 'rehYnfjHjjHg',activated: true, enabled: true, two_factor: false)
