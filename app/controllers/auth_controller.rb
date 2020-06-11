@@ -72,6 +72,56 @@ class AuthController < ActionController::Base
     end
   end
 
+  def password_reset
+    if request.post?
+      @password_request = PasswordRequest.where(:token => params[:password_request][:token]).first
+      if @password_request
+        @password_request.change_password( params[:password_request][:password],params[:password_request][:password_confirmation])
+        if !@password_request.errors.any?
+          flash[:success]='your new password has been saved, you can now login'
+          @password_request.delete
+          redirect_to role_path
+        end
+      else
+        flash[:danger] = 'Something went wrong!'
+      end
+    else
+      token = params[:token]
+      @password_request = PasswordRequest.where(:token => token).first
+      if @password_request
+      else
+        flash[:danger] = 'Invalid password reset link.'
+        redirect_to role_path
+      end
+    end
+  end
+
+  def forgot_password
+    if request.post?
+      email = params[:email]
+      if email && email.length > 0
+        u = User.find_by_email(email)
+        if u
+          exists = PasswordRequest.where(:user_id => u.id).first
+          if exists
+            flash[:warning] = "There is a pending password request for this email: #{email}"
+          else
+            PasswordRequest.send_password_reset(email)
+            flash[:info]  = 'Check your email for a password reset link.'
+            redirect_to signin_path
+          end
+        else
+          #email doesn't exist
+          #to prevent bad guys using the password reset tool to know if an email exists we'll just say an email has been sent
+          flash[:info]  = 'Check your email for a password reset link.'
+          redirect_to  signin_path
+        end
+      else
+        flash[:warning] = 'The email cannot be blank'
+      end
+    end
+  end
+
   private
 
   def user_params

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_05_151130) do
+ActiveRecord::Schema.define(version: 2020_06_11_191911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,14 @@ ActiveRecord::Schema.define(version: 2020_06_05_151130) do
     t.integer "user_id"
     t.index ["broad_sector_name_id"], name: "index_enterprises_on_broad_sector_name_id"
     t.index ["business_form_id"], name: "index_enterprises_on_business_form_id"
+  end
+
+  create_table "password_requests", force: :cascade do |t|
+    t.string "token"
+    t.datetime "expiry"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

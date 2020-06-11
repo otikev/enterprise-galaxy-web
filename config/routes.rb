@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   match '/registration/success', to: 'auth#signup_success', via: :get
   match '/signin', to: 'auth#signin', via: [:get, :post]
   match '/signup', to: 'auth#signup', via: :get
+  match '/forgot_password', to: 'auth#forgot_password', via: [:get, :post]
+  match '/password_reset', to: 'auth#password_reset', via: [:get, :post]
 
   match '/countdown', to: 'site#countdown', via: 'get'
 
