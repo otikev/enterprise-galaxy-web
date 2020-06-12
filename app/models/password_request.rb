@@ -9,12 +9,15 @@ class PasswordRequest < ApplicationRecord
   attr_accessor :password, :password_confirmation
 
   def change_password(password,password_confirmation)
-    if password ==password_confirmation
-      user.change_password(password,password_confirmation)
+    if password == password_confirmation
+      user.change_password(password)
       if user.errors.any?
         user.errors.each do |k,v|
           errors.add(k,v)
         end
+      else
+        self.used = true
+        self.save
       end
     else
       errors.add(:base, 'The password and password confirmation do not match!')
@@ -33,20 +36,21 @@ class PasswordRequest < ApplicationRecord
     success = false
     user = User.where(:email => email).first
     if user
+      puts "found user with email "+email
       begin
         request_pwd = PasswordRequest.new
         request_pwd.user = user
-        #generate_token
         request_pwd.token = Digest::SHA1.hexdigest(Utils.random_upcase_string(10))
-
-        #set expiry
         request_pwd.expiry = (DateTime.current + 24.hours).to_datetime
-
         request_pwd.save!
-        Notifications.delay.forgot_password(request_pwd)
+
+        puts "sending password recovery email..."
+        EnterpriseMailer.password_reset(request_pwd).deliver_now
         success = true
-      rescue
+      rescue Exception => e
         success = false
+        logger.error e.message
+        e.backtrace.each { |line| logger.error line }
       end
     else
       success = false

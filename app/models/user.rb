@@ -33,8 +33,10 @@ class User < ApplicationRecord
   validates :password, :presence =>true,:length => { :minimum => 5, :maximum => 40 },:confirmation =>true
 
   def authenticate(pass,generate_new_token)
+    puts "Authenticating...."
 
-    if User.digest(pass + self.password_salt) == self.password_hash
+    if BCrypt::Password.new(self.password_hash).is_password?(pass + self.password_salt)
+      puts "password is valid"
       if generate_new_token
         generate_auth_token
         update_attribute('auth_token', self.auth_token)
@@ -67,10 +69,17 @@ class User < ApplicationRecord
     BCrypt::Password.new(digest).is_password?(token)
   end
 
+  def change_password(password)
+    self.password = password
+    self.password_salt = Utils.random_string(10)
+    self.password_hash = User.digest(self.password + self.password_salt)
+    self.save!
+  end
+
   private
 
   def set_password
-    self.password_salt = Utils.random_string(10) if !self.password_salt?
+    self.password_salt = Utils.random_string(10)
     self.password_hash = User.digest(password + self.password_salt)
   end
 
