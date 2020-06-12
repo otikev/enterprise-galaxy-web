@@ -51,8 +51,7 @@ var UserProfileTabbed = function() {
         }
 
         // Add events
-        var eventColors = [
-            {
+        var eventColors = [{
                 title: 'Day off',
                 start: '2014-11-01',
                 color: '#DB7272'
@@ -113,9 +112,9 @@ var UserProfileTabbed = function() {
         var myScheduleElement = document.querySelector('.my-schedule');
 
         // Initialize
-        if(myScheduleElement) {
+        if (myScheduleElement) {
             var myScheduleInit = new FullCalendar.Calendar(myScheduleElement, {
-                plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
+                plugins: ['dayGrid', 'timeGrid', 'interaction'],
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -127,10 +126,7 @@ var UserProfileTabbed = function() {
                 events: eventColors
             });
 
-            // Render if inside hidden element
-            $('.nav-link[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                myScheduleInit.render();
-            });
+            myScheduleInit.render();
         }
     };
 
@@ -153,16 +149,15 @@ var UserProfileTabbed = function() {
 
         // Highlight row when checkbox is checked
         $('.table-inbox').find('tr > td:first-child').find('input[type=checkbox]').on('change', function() {
-            if($(this).is(':checked')) {
+            if ($(this).is(':checked')) {
                 $(this).parents('tr').addClass(highlightColorClass);
-            }
-            else {
+            } else {
                 $(this).parents('tr').removeClass(highlightColorClass);
             }
         });
 
         // Grab first letter and insert to the icon
-        $('.table-inbox tr').each(function (i) {
+        $('.table-inbox tr').each(function(i) {
 
             // Title
             var $title = $(this).find('.letter-icon-title'),
@@ -170,7 +165,7 @@ var UserProfileTabbed = function() {
 
             // Icon
             var $icon = $(this).find('.letter-icon');
-                $icon.eq(0).text(letter);
+            $icon.eq(0).text(letter);
         });
     };
 
