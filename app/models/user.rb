@@ -93,6 +93,7 @@ class User < ApplicationRecord
   end
 
   def create_activation_digest
+    self.enabled = true
     self.activation_token = User.digest(User.new_token)
   end
 
