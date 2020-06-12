@@ -17,6 +17,8 @@
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #  user_id                  :integer
+#  phone                    :string
+#  referral                 :string
 #
 
 class Enterprise < ApplicationRecord
@@ -28,4 +30,6 @@ class Enterprise < ApplicationRecord
 	validates :registration_date, :presence =>true
 	validates :start_of_operations_date, :presence =>true
 	validates :country, :presence =>true
+	validates :phone, :presence =>true
+	validates :referral, :presence =>true
 end

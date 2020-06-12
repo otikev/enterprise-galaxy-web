@@ -23,12 +23,12 @@ class AuthController < ActionController::Base
           else
             #user found but password is incorrect
             @user = User.new
-            @user.errors[:base] << "Invalid username or password 1"
+            @user.errors[:base] << "Invalid username or password"
           end
         else
           #user with email and role not found in db
           @user = User.new
-          @user.errors[:base] << "Invalid username or password 2"
+          @user.errors[:base] << "Invalid username or password"
         end
       end
     else
@@ -72,12 +72,67 @@ class AuthController < ActionController::Base
     end
   end
 
+  def password_reset
+    if request.post?
+      @password_request = PasswordRequest.where(:token => params[:password_request][:token]).first
+      if @password_request
+        @password_request.change_password(params[:password_request][:password],params[:password_request][:password_confirmation])
+        unless @password_request.errors.any?
+          flash[:success] = 'your new password has been saved, you can now login'
+          @password_request.delete
+          redirect_to signin_path
+        end
+      else
+        flash[:danger] = 'Something went wrong!'
+      end
+    else
+      token = params[:token]
+      @password_request = PasswordRequest.where(:token => token, :used => false).first
+      unless @password_request
+        flash[:danger] = 'Invalid password reset link.'
+        redirect_to signin_path
+      end
+    end
+  end
+
+  def forgot_password
+    if request.post?
+      email = params[:email]
+      if email && email.length > 0
+        u = User.find_by_email(email)
+        if u
+          exists = PasswordRequest.where(:user_id => u.id, :used => false).first
+          if exists
+            exists.delete
+          end
+
+          success = PasswordRequest.send_password_reset(email)
+          if success
+            puts "Password request success"
+          else
+            puts "Password request failed"
+          end
+          flash[:info]  = 'Check your email for a password reset link.'
+          redirect_to signin_path
+        else
+          #email doesn't exist
+          #to prevent bad guys using the password reset tool to know if an email exists we'll just say an email has been sent
+          flash[:info]  = 'Check your email for a password reset link.'
+          redirect_to  signin_path
+        end
+      else
+        flash[:warning] = 'The email cannot be blank'
+      end
+    end
+  end
+
   private
 
   def user_params
     params.require(:user).permit(:email,:password,:password_confirmation,
                                  {enterprise_attributes:[:business_name,:business_form_id,:broad_sector_name_id,
-                                                        :registration_date,:start_of_operations_date,:country]},
+                                                        :registration_date,:start_of_operations_date,:country,
+                                                         :phone,:referral]},
                                  {adviser_attributes:[:title,:first_name,:other_names,:date_of_birth,:cell_phone,
                                                      :country_of_residence]})
   end

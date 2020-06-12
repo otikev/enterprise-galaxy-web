@@ -6,6 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+BusinessForm.delete_all
+BroadSectorName.delete_all
+User.delete_all
+
 BusinessForm.create(name: 'Sole Proprietor')
 BusinessForm.create(name: 'Partnership')
 BusinessForm.create(name: 'Limited Company')

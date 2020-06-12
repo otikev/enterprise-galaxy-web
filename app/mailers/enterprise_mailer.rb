@@ -17,6 +17,8 @@ class EnterpriseMailer < ApplicationMailer
   #
   #   en.enterprise_mailer.password_reset.subject
   #
-  def password_reset
+  def password_reset(password_request)
+    @password_request = password_request
+    mail to: password_request.user.email, subject: "Password Recovery"
   end
 end
