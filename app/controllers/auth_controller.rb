@@ -1,4 +1,20 @@
 class AuthController < ActionController::Base
+
+  def activate
+    user = User.find_by(email: params[:email], activation_token: params[:activation])
+
+    if user && !user.activated?
+      user.update_attribute(:activated, true)
+      user.update_attribute(:activated_at, Time.zone.now)
+      user.update_attribute(:activation_token, nil)
+      flash[:success] = params[:email]+" account activated!"
+    else
+      flash[:danger] = "Invalid activation link!"
+    end
+
+    redirect_to signin_path
+  end
+
   def signin
     if request.post?
       email = params[:user][:email]
@@ -10,20 +26,24 @@ class AuthController < ActionController::Base
         user = User.where(email: email).first
 
         if user
-          @user = user.authenticate(password, true)
-          if @user
-            if !@user.enabled
-              cookies.delete(:auth_token)
-              @user = User.new
-              @user.errors[:base] << "Your account has been disabled"
+          if user.activated?
+            @user = user.authenticate(password, true)
+            if @user
+              if !@user.enabled?
+                cookies.delete(:auth_token)
+                @user = User.new
+                @user.errors[:base] << "Your account has been disabled"
+              else
+                cookies[:auth_token] = @user.auth_token
+                redirect_to dashboard_path and return true
+              end
             else
-              cookies[:auth_token] = @user.auth_token
-              redirect_to dashboard_path and return true
+              #user found but password is incorrect
+              @user = User.new
+              @user.errors[:base] << "Invalid username or password"
             end
           else
-            #user found but password is incorrect
-            @user = User.new
-            @user.errors[:base] << "Invalid username or password"
+            @user.errors[:base] << "This account has not been activated, please check your email for the activation link"
           end
         else
           #user with email and role not found in db
