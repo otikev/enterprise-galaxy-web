@@ -1,7 +1,7 @@
 class AdvisersController < ApplicationController
-  public
 
-  def new
-    # code here
+  def show
+    @adviser = Adviser.where(:id => params[:id]).first
   end
+
 end

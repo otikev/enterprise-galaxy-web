@@ -4,7 +4,4 @@ class EnterprisesController < ApplicationController
     @enterprise = Enterprise.where(:id => params[:id]).first
   end
 
-  def dashboard
-
-  end
 end

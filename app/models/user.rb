@@ -2,18 +2,18 @@
 #
 # Table name: users
 #
-#  id                      :integer          not null, primary key
-#  email                   :string
-#  password_hash           :string
-#  password_salt           :string
-#  auth_token              :string
-#  activated               :string
-#  activation_token        :string
-#  activation_token_expiry :date
-#  enabled                 :boolean
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
-#  two_factor              :boolean          default("false")
+#  id               :integer          not null, primary key
+#  email            :string
+#  password_hash    :string
+#  password_salt    :string
+#  auth_token       :string
+#  activation_token :string
+#  enabled          :boolean
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  two_factor       :boolean          default("false")
+#  activated_at     :datetime
+#  activated        :boolean          default("false")
 #
 
 class User < ApplicationRecord
@@ -32,6 +32,14 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: Utils::VALID_EMAIL_REGEX },uniqueness: { case_sensitive: false }
   validates :password, :presence =>true,:length => { :minimum => 5, :maximum => 40 },:confirmation =>true
 
+  def is_enterprise?
+    self.enterprise != nil
+  end
+
+  def is_adviser?
+    self.adviser != nil
+  end
+
   def authenticate(pass,generate_new_token)
     puts "Authenticating...."
 
@@ -44,14 +52,6 @@ class User < ApplicationRecord
       self
     else
       nil
-    end
-  end
-
-  def send_activate
-    #Don't send activation emails if user already activated
-    if !activated
-      update_attribute('activation_token_expiry', (Date.today + 7.days))
-      Notifications.delay.activate(self)
     end
   end
 
@@ -94,12 +94,13 @@ class User < ApplicationRecord
 
   def create_activation_digest
     self.enabled = true
+    self.activated = false
     self.activation_token = User.digest(User.new_token)
   end
 
   def generate_auth_token
     begin
-      self.auth_token = Digest::SHA1.hexdigest(Utils.random_string(10))
+      self.auth_token = Digest::SHA1.hexdigest(User.digest(User.new_token))
     end while User.exists?(:auth_token => self.auth_token)
   end
 end
