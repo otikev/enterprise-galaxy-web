@@ -14,8 +14,17 @@ Rails.application.routes.draw do
   match '/activate', to: 'auth#activate', via: :get
   #End Auth controller
 
-  match '/countdown', to: 'site#countdown', via: 'get'
+  #Enterprises controller
+  match '/enterprise_dashboard', to: 'enterprises#show', via: 'get'
+  #End Enterprises controller
 
+  #Enterprises controller
+  match '/adviser_dashboard', to: 'advisers#show', via: 'get'
+  #End Enterprises controller
+
+  #Other
+  match '/countdown', to: 'site#countdown', via: 'get'
   match '/theme', to: 'enterprises#theme', via: 'get'
   match '/dashboard', to: 'enterprises#dashboard', via: 'get'
+  #End Other
 end

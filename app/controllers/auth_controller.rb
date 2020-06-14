@@ -32,10 +32,15 @@ class AuthController < ActionController::Base
               if !@user.enabled?
                 cookies.delete(:auth_token)
                 @user = User.new
-                @user.errors[:base] << "Your account has been disabled"
+                @user.errors[:base] << "Invalid username or password"
               else
                 cookies[:auth_token] = @user.auth_token
-                redirect_to dashboard_path and return true
+
+                if @user.is_enterprise?
+                  redirect_to enterprise_dashboard_path(id: @user.enterprise.id) and return true
+                elsif @user.is_adviser?
+                  redirect_to adviser_dashboard_path(id: @user.adviser.id) and return true
+                end
               end
             else
               #user found but password is incorrect
@@ -43,6 +48,7 @@ class AuthController < ActionController::Base
               @user.errors[:base] << "Invalid username or password"
             end
           else
+            @user = User.new
             @user.errors[:base] << "This account has not been activated, please check your email for the activation link"
           end
         else

@@ -32,6 +32,14 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: Utils::VALID_EMAIL_REGEX },uniqueness: { case_sensitive: false }
   validates :password, :presence =>true,:length => { :minimum => 5, :maximum => 40 },:confirmation =>true
 
+  def is_enterprise?
+    self.enterprise != nil
+  end
+
+  def is_adviser?
+    self.adviser != nil
+  end
+
   def authenticate(pass,generate_new_token)
     puts "Authenticating...."
 
