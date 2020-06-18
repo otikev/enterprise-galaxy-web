@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   match '/forgot_password', to: 'auth#forgot_password', via: [:get, :post]
   match '/password_reset', to: 'auth#password_reset', via: [:get, :post]
   match '/activate', to: 'auth#activate', via: :get
+  match '/multi_factor', to: 'auth#two_factor', via: [:get, :post]
   #End Auth controller
 
   #Enterprises controller

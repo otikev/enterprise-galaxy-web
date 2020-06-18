@@ -14,6 +14,8 @@
 #  two_factor       :boolean          default("false")
 #  activated_at     :datetime
 #  activated        :boolean          default("false")
+#  google_secret    :string
+#  mfa_secret       :string
 #
 
 require 'test_helper'

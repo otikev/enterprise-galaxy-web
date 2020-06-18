@@ -1,0 +1,33 @@
+  <!-- Content area -->
+  <div class="content d-flex justify-content-center align-items-center">
+
+    <!-- Login card -->
+    <%= form_for @user, url: multi_factor_path,:method => :post, html: {class: "login-form"} do |f| %>
+      <div class="card mb-0">
+        <div class="card-body">
+          <div class="text-center mb-3">
+            <%= image_tag('logo_transparent.png', width: "100", alt: "Enterprise Galaxy") %>
+            <h5 class="mb-0">Two Factor Authentication</h5>
+            <span class="d-block text-muted">Your credentials</span>
+          </div>
+
+          <%= render 'general/error_messages', object: f.object %>
+
+          <%= f.hidden_field :email, :value => @user.email %>
+
+          <div class="form-group form-group-feedback form-group-feedback-left">
+            <%= f.password_field :mfa_code, class:"form-control", placeholder:"Code", :required=>true %>
+            <div class="form-control-feedback">
+              <i class="icon-lock2 text-muted"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= button_to("Proceed",{controller:'auth', action:'two_factor'}, class: "btn btn-primary btn-block", :method => :post) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+  <!-- /content area -->
