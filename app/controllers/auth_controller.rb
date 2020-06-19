@@ -83,6 +83,11 @@ class AuthController < ActionController::Base
               @user.errors[:base] << "Invalid username or password"
             end
           else
+            if user.is_enterprise?
+              EnterpriseMailer.account_activation(@user, @user.enterprise.business_name).deliver_now
+            elsif user.is_adviser?
+              EnterpriseMailer.account_activation(@user, @user.adviser.first_name).deliver_now
+            end
             @user = User.new
             @user.errors[:base] << "This account has not been activated, please check your email for the activation link"
           end
