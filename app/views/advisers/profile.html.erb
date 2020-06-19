@@ -1,0 +1,121 @@
+<!-- Main content -->
+<div class="content">
+  <div class="row" style="margin-bottom: 10px;">
+    <div class="text-left col-12">
+      <%= link_to "Back to Profile", adviser_dashboard_path, class: "btn btn-success btn-block col-1" %>
+    </div>
+  </div>
+  <!-- Content area -->
+  <div class="content d-flex justify-content-center align-items-center">
+    <%= form_for @current_user.adviser,:html => {:class => 'signup-form'}, :url => url_for(:controller => 'advisers', :action => 'profile' ),:method => :post do |adviser_form| %>
+      <div class="card mb-0">
+        <div class="card-body">
+          <div class="text-center mb-3">
+            <h5 class="mb-0">Edit Adviser Account</h5>
+          </div>
+
+          <%= render 'general/error_messages', object: adviser_form.object %>
+
+          <div class="form-group text-center text-muted content-divider">
+            <span class="px-2">Adviser Details</span>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-user-tie text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Title:</label>
+            <div class="col-lg-7">
+              <%= adviser_form.select :title,[['Mr.',1],['Mrs.',2],['Ms.',3],['Dr.',4],['Rev.',4]], {prompt: "Select Title" }, {class: "form-control"} %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-profile text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;First Name:</label>
+            <div class="col-lg-7">
+              <%= adviser_form.text_field :first_name, placeholder: "First Name", class: "form-control" , :required=>true %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-profile text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Other Names:</label>
+            <div class="col-lg-7">
+              <%= adviser_form.text_field :other_names, placeholder: "Other Names", class: "form-control" , :required=>true %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-calendar text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date Of Birth:</label>
+            <div class="col-lg-7">
+              <%= adviser_form.date_field :date_of_birth, class: "form-control",placeholder: "Date of Birth" , :required=>true%>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-person text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gender:</label>
+            <div class="col-lg-7">
+              <%= adviser_form.select :title,[['Male','Male'],['Female','Female']], {prompt: "Select Gender" }, {class: "form-control"} %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-phone2 text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cell Phone:</label>
+            <div class="col-lg-7">
+              <%= adviser_form.text_field :cell_phone, placeholder: "Cell Phone", class: "form-control" , :required=>true %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-location3 text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Country of residence:</label>
+            <div class="col-lg-7">
+              <%= adviser_form.country_select :country_of_residence, ["Kenya"], {prompt: "Select Country" }, {class: "form-control"} %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-address-book2 text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nationality:</label>
+            <div class="col-lg-7">
+              <%= adviser_form.country_select :nationality, ["Kenya"], {prompt: "Select Nationality" }, {class: "form-control"} %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-mailbox text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P.O. Box:</label>
+            <div class="col-lg-7">
+              <%= adviser_form.text_field :po_box, placeholder: "P.O. Box", class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-city text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;City:</label>
+            <div class="col-lg-7">
+              <%= adviser_form.text_field :city, placeholder: "City", class: "form-control"%>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-mail5 text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Personal Email:</label>
+            <div class="col-lg-7">
+              <%= adviser_form.text_field :personal_email, placeholder: "Personal Email", class: "form-control"%>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-mail-read text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Work Email:</label>
+            <div class="col-lg-7">
+              <%= adviser_form.text_field :work_email, placeholder: "Work Email", class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-comments text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Preferred Mode Of Communication:</label>
+            <div class="col-lg-7">
+              <%= adviser_form.text_field :preferred_mode_of_comms, placeholder: "Mode Of Communication", class: "form-control"%>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-briefcase3 text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Employment Status:</label>
+            <div class="col-lg-7">
+              <%= adviser_form.select :employment_status,[['Employed','Employed'],['Unemployed','Unemployed']], {prompt: "Employment Status" }, {class: "form-control"} %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-5 col-form-label text-right"><i class="icon-comments text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Current Employer:</label>
+            <div class="col-lg-7">
+              <%= adviser_form.text_field :current_employer, placeholder: "Current Employer", class: "form-control"%>
+            </div>
+          </div>
+          <%= button_to("Update",{controller:'advisers', action:'profile'}, class: "btn btn-success btn-block", :method => :post) %>
+        </div>
+      </div>
+      </div>
+    <% end %>
+    </div>
+<!-- /content area -->
+</div>
+<!-- /main content -->

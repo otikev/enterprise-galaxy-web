@@ -19,9 +19,10 @@ Rails.application.routes.draw do
   match '/enterprise_dashboard', to: 'enterprises#show', via: 'get'
   #End Enterprises controller
 
-  #Enterprises controller
+  #Advisers controller
   match '/adviser_dashboard', to: 'advisers#show', via: 'get'
-  #End Enterprises controller
+  match '/adviser_edit_profile', to: 'advisers#profile', via: [:get, :post]
+  #End Advisers controller
 
   #Other
   match '/countdown', to: 'site#countdown', via: 'get'
