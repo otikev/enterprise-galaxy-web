@@ -5,6 +5,10 @@ class AdvisersController < ApplicationController
     @adviser = @current_user.adviser
   end
 
+  def dashboard
+
+  end
+
   def profile
     if request.post?
 

@@ -17,11 +17,13 @@ Rails.application.routes.draw do
   #End Auth controller
 
   #Enterprises controller
-  match '/enterprise_dashboard', to: 'enterprises#show', via: 'get'
+  match '/enterprise_profile', to: 'enterprises#show', via: 'get'
+  match '/enterprise_dashboard', to: 'enterprises#dashboard', via: 'get'
   #End Enterprises controller
 
   #Advisers controller
-  match '/adviser_dashboard', to: 'advisers#show', via: 'get'
+  match '/adviser_profile', to: 'advisers#show', via: 'get'
+  match '/adviser_dashboard', to: 'advisers#dashboard', via: 'get'
   match '/adviser_edit_profile', to: 'advisers#profile', via: [:get, :post]
   #End Advisers controller
 
