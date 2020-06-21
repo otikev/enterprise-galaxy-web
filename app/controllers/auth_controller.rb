@@ -15,6 +15,47 @@ class AuthController < ActionController::Base
     redirect_to signin_path
   end
 
+  def two_factor
+    if request.post?
+      code = params[:user][:mfa_code]
+      email = params[:user][:email]
+      @user = User.where(email: email).first
+      if @user
+        success = @user.two_factor(code)
+        if success
+          cookies[:auth_token] = @user.auth_token
+          if @user.is_enterprise?
+            redirect_to enterprise_dashboard_path(id: @user.enterprise.id) and return true
+          elsif @user.is_adviser?
+            redirect_to adviser_dashboard_path(id: @user.adviser.id) and return true
+          end
+        else
+          @user.errors[:base] << "Invalid code"
+        end
+      else
+        redirect_to signin_path
+      end
+    else
+      @user = User.where(auth_token: params[:token]).first
+      if @user
+        @user.update_attribute(:auth_token,nil)
+      else
+        redirect_to signin_path and return false
+      end
+    end
+  end
+
+  def signout
+    if cookies[:auth_token] && cookies[:auth_token].length > 0
+      user = User.find_by_auth_token!(cookies[:auth_token])
+      if user
+        user.update_attribute(:auth_token,nil)
+      end
+      cookies.delete(:auth_token)
+    end
+    redirect_to signin_path
+  end
+
   def signin
     if request.post?
       email = params[:user][:email]
@@ -27,19 +68,24 @@ class AuthController < ActionController::Base
 
         if user
           if user.activated?
-            @user = user.authenticate(password, true)
+            @user = user.authenticate(password)
             if @user
               if !@user.enabled?
                 cookies.delete(:auth_token)
                 @user = User.new
                 @user.errors[:base] << "Invalid username or password"
               else
+
+                if @user.two_factor?
+                  redirect_to multi_factor_path(token: @user.auth_token) and return true
+                end
+
                 cookies[:auth_token] = @user.auth_token
 
                 if @user.is_enterprise?
-                  redirect_to enterprise_dashboard_path(id: @user.enterprise.id) and return true
+                  redirect_to enterprise_dashboard_path and return true
                 elsif @user.is_adviser?
-                  redirect_to adviser_dashboard_path(id: @user.adviser.id) and return true
+                  redirect_to adviser_dashboard_path and return true
                 end
               end
             else
@@ -48,6 +94,11 @@ class AuthController < ActionController::Base
               @user.errors[:base] << "Invalid username or password"
             end
           else
+            if user.is_enterprise?
+              EnterpriseMailer.account_activation(@user, @user.enterprise.business_name).deliver_now
+            elsif user.is_adviser?
+              EnterpriseMailer.account_activation(@user, @user.adviser.first_name).deliver_now
+            end
             @user = User.new
             @user.errors[:base] << "This account has not been activated, please check your email for the activation link"
           end

@@ -2,18 +2,21 @@
 #
 # Table name: users
 #
-#  id               :integer          not null, primary key
-#  email            :string
-#  password_hash    :string
-#  password_salt    :string
-#  auth_token       :string
-#  activation_token :string
-#  enabled          :boolean
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  two_factor       :boolean          default("false")
-#  activated_at     :datetime
-#  activated        :boolean          default("false")
+#  id                    :integer          not null, primary key
+#  email                 :string
+#  password_hash         :string
+#  password_salt         :string
+#  auth_token            :string
+#  activation_token      :string
+#  enabled               :boolean
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  two_factor            :boolean          default("false")
+#  activated_at          :datetime
+#  activated             :boolean          default("false")
+#  google_secret         :string
+#  mfa_secret            :string
+#  failed_login_attempts :integer          default("0")
 #
 
 class User < ApplicationRecord
@@ -32,6 +35,8 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: Utils::VALID_EMAIL_REGEX },uniqueness: { case_sensitive: false }
   validates :password, :presence =>true,:length => { :minimum => 5, :maximum => 40 },:confirmation =>true
 
+  acts_as_google_authenticated :lookup_token => :mfa_secret, :encrypt_secrets => true
+
   def is_enterprise?
     self.enterprise != nil
   end
@@ -40,17 +45,46 @@ class User < ApplicationRecord
     self.adviser != nil
   end
 
-  def authenticate(pass,generate_new_token)
+  def profile_completion_status
+    if is_adviser?
+      self.adviser.profile_completion_status
+    elsif is_enterprise?
+      0 #To be implemented
+    end
+  end
+  def two_factor(code)
+    self.password = "somepassword" #prevent password validation from failing
+    self.mfa_secret = code
+    self.save!
+    if self.google_authentic?(code)
+      generate_auth_token
+      update_attribute('auth_token', self.auth_token)
+      self
+    else
+      nil
+    end
+  end
+
+  def authenticate(pass)
     puts "Authenticating...."
 
     if BCrypt::Password.new(self.password_hash).is_password?(pass + self.password_salt)
       puts "password is valid"
-      if generate_new_token
-        generate_auth_token
-        update_attribute('auth_token', self.auth_token)
+      generate_auth_token
+      update_attribute('failed_login_attempts',0)
+      update_attribute('auth_token', self.auth_token)
+      if self.two_factor?
+        self.password = pass #prevent password validation from failing
+        unless self.google_secret
+          set_google_secret
+        end
       end
       self
     else
+      update_attribute('failed_login_attempts',self.failed_login_attempts+1)
+      if self.failed_login_attempts >= 3
+        update_attribute('enabled',false)
+      end
       nil
     end
   end

@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_14_210914) do
+ActiveRecord::Schema.define(version: 2020_06_19_121736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "advisers", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
@@ -91,6 +90,9 @@ ActiveRecord::Schema.define(version: 2020_06_14_210914) do
     t.boolean "two_factor", default: false
     t.datetime "activated_at"
     t.boolean "activated", default: false
+    t.string "google_secret"
+    t.string "mfa_secret"
+    t.integer "failed_login_attempts", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

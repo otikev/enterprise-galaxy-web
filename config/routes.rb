@@ -12,15 +12,18 @@ Rails.application.routes.draw do
   match '/forgot_password', to: 'auth#forgot_password', via: [:get, :post]
   match '/password_reset', to: 'auth#password_reset', via: [:get, :post]
   match '/activate', to: 'auth#activate', via: :get
+  match '/multi_factor', to: 'auth#two_factor', via: [:get, :post]
+  match '/logout', to: 'auth#signout', via: :get
   #End Auth controller
 
   #Enterprises controller
   match '/enterprise_dashboard', to: 'enterprises#show', via: 'get'
   #End Enterprises controller
 
-  #Enterprises controller
+  #Advisers controller
   match '/adviser_dashboard', to: 'advisers#show', via: 'get'
-  #End Enterprises controller
+  match '/adviser_edit_profile', to: 'advisers#profile', via: [:get, :post]
+  #End Advisers controller
 
   #Other
   match '/countdown', to: 'site#countdown', via: 'get'

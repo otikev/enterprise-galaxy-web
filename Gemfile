@@ -20,7 +20,7 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'jquery-rails'
 gem 'bootstrap-sass'
-
+gem 'google-authenticator-rails'
 gem 'mailjet', :git => 'https://github.com/mailjet/mailjet-gem.git'
 
 gem 'country-select'
