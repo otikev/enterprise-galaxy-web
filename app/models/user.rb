@@ -45,6 +45,13 @@ class User < ApplicationRecord
     self.adviser != nil
   end
 
+  def profile_completion_status
+    if is_adviser?
+      self.adviser.profile_completion_status
+    elsif is_enterprise?
+      0 #To be implemented
+    end
+  end
   def two_factor(code)
     self.password = "somepassword" #prevent password validation from failing
     self.mfa_secret = code
