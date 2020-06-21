@@ -83,9 +83,9 @@ class AuthController < ActionController::Base
                 cookies[:auth_token] = @user.auth_token
 
                 if @user.is_enterprise?
-                  redirect_to enterprise_dashboard_path and return true
+                  redirect_to enterprise_profile_path and return true
                 elsif @user.is_adviser?
-                  redirect_to adviser_dashboard_path and return true
+                  redirect_to adviser_profile_path and return true
                 end
               end
             else
