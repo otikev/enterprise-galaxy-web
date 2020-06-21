@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   #Advisers controller
   match '/adviser_profile', to: 'advisers#show', via: 'get'
   match '/adviser_dashboard', to: 'advisers#dashboard', via: 'get'
-  match '/adviser_edit_profile', to: 'advisers#profile', via: [:get, :post]
+  match '/adviser_edit_profile', to: 'advisers#edit_profile', via: [:get, :post]
   #End Advisers controller
 
   #Other

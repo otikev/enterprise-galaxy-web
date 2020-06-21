@@ -65,7 +65,6 @@
 </div>
 <!-- /main navbar -->
 
-
 <!-- Page content -->
 <div class="page-content">
 
@@ -85,7 +84,6 @@
     </div>
     <!-- /sidebar mobile toggler -->
 
-
     <!-- Sidebar content -->
     <div class="sidebar-content">
 
@@ -102,7 +100,7 @@
                 <% if @current_user.is_enterprise? %>
                   <span><%= @current_user.enterprise.business_name %></span>
                 <% elsif @current_user.is_adviser? %>
-                  <span><%= @current_user.adviser.first_name %></span>
+                  <span><%= @current_user.adviser.first_name %>&nbsp;<%= @current_user.adviser.other_names %> </span>
                 <% end %>
               </div>
               <div class="font-size-xs opacity-50 text-center">
@@ -114,7 +112,6 @@
                 <% end %>
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -190,7 +187,6 @@
     <!-- /sidebar content -->
   </div>
   <!-- /main sidebar -->
-
 
   <!-- Main content -->
   <div class="content-wrapper">

@@ -33,23 +33,6 @@ class Adviser < ApplicationRecord
   validates :cell_phone, :presence =>true
   validates :country_of_residence, :presence =>true
 
-  def get_title
-    #[['Mr.',1],['Mrs.',2],['Ms.',3],['Dr.',4],['Rev.',4]]
-    title_string = ""
-    if self.title.eql? "1"
-      title_string = "Mr."
-    elsif self.title.eql? "2"
-      title_string = "Mrs."
-    elsif self.title.eql? "3"
-      title_string = "Ms."
-    elsif self.title.eql? "4"
-      title_string = "Dr."
-    elsif self.title.eql? "5"
-      title_string = "Rev."
-    end
-    title_string
-  end
-
   def profile_completion_status
     total_data_points = 15.0
     completed_data_points = 0

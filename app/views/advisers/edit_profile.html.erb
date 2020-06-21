@@ -1,13 +1,8 @@
 <!-- Main content -->
 <div class="content">
-  <div class="row" style="margin-bottom: 10px;">
-    <div class="text-left col-12">
-      <%= link_to "Back to Profile", adviser_dashboard_path, class: "btn btn-success btn-block col-1" %>
-    </div>
-  </div>
   <!-- Content area -->
   <div class="content d-flex justify-content-center align-items-center">
-    <%= form_for @current_user.adviser,:html => {:class => 'signup-form'}, :url => url_for(:controller => 'advisers', :action => 'profile' ),:method => :post do |adviser_form| %>
+    <%= form_for @current_user.adviser,:html => {:class => 'signup-form'}, :url => url_for(:controller => 'advisers', :action => 'edit_profile' ),:method => :post do |adviser_form| %>
       <div class="card mb-0">
         <div class="card-body">
           <div class="text-center mb-3">
@@ -47,7 +42,7 @@
           <div class="form-group row">
             <label class="col-lg-5 col-form-label text-right"><i class="icon-person text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gender:</label>
             <div class="col-lg-7">
-              <%= adviser_form.select :title,[['Male','Male'],['Female','Female']], {prompt: "Select Gender" }, {class: "form-control"} %>
+              <%= adviser_form.select :gender,[['Male','Male'],['Female','Female']], {prompt: "Select Gender" }, {class: "form-control"} %>
             </div>
           </div>
           <div class="form-group row">
@@ -110,7 +105,7 @@
               <%= adviser_form.text_field :current_employer, placeholder: "Current Employer", class: "form-control"%>
             </div>
           </div>
-          <%= button_to("Update",{controller:'advisers', action:'profile'}, class: "btn btn-success btn-block", :method => :post) %>
+          <%= button_to("Update",{controller:'advisers', action:'edit_profile'}, class: "btn btn-success btn-block", :method => :post) %>
         </div>
       </div>
       </div>
