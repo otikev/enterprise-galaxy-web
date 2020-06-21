@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_19_121736) do
+ActiveRecord::Schema.define(version: 2020_06_21_090746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 2020_06_19_121736) do
     t.string "google_secret"
     t.string "mfa_secret"
     t.integer "failed_login_attempts", default: 0
+    t.string "unlock_token"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

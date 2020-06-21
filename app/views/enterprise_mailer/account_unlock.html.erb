@@ -1,0 +1,7 @@
+<p>Hello <%= @name %>,</p>
+
+<p>
+  Your account was locked due to failed login attempts. You can unlock your account by clicking on the link below
+</p>
+
+<%= link_to "Unlock", unlock_url(token: @user.unlock_token, email: @user.email) %>

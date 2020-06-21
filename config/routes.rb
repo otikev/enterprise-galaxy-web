@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   match '/activate', to: 'auth#activate', via: :get
   match '/multi_factor', to: 'auth#two_factor', via: [:get, :post]
   match '/logout', to: 'auth#signout', via: :get
+  match '/unlock', to: 'auth#unlock', via: :get
   #End Auth controller
 
   #Enterprises controller

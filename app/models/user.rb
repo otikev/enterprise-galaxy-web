@@ -17,6 +17,7 @@
 #  google_secret         :string
 #  mfa_secret            :string
 #  failed_login_attempts :integer          default("0")
+#  unlock_token          :string
 #
 
 class User < ApplicationRecord
@@ -83,7 +84,14 @@ class User < ApplicationRecord
     else
       update_attribute('failed_login_attempts',self.failed_login_attempts+1)
       if self.failed_login_attempts >= 3
+        update_attribute('unlock_token',User.digest(User.new_token))
         update_attribute('enabled',false)
+
+        if is_enterprise?
+          EnterpriseMailer.account_unlock(self, self.enterprise.business_name).deliver_now
+        elsif is_adviser?
+          EnterpriseMailer.account_unlock(self, self.adviser.first_name).deliver_now
+        end
       end
       nil
     end

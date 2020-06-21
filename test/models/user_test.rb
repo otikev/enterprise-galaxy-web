@@ -17,6 +17,7 @@
 #  google_secret         :string
 #  mfa_secret            :string
 #  failed_login_attempts :integer          default("0")
+#  unlock_token          :string
 #
 
 require 'test_helper'

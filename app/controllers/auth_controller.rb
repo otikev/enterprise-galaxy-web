@@ -1,5 +1,18 @@
 class AuthController < ActionController::Base
 
+  def unlock
+    #TODO: show page with Captcha
+    user = User.find_by(email: params[:email], unlock_token: params[:token])
+
+    if user
+      user.update_attribute(:enabled, true)
+      user.update_attribute(:unlock_token, nil)
+      user.update_attribute(:failed_login_attempts, 0)
+    end
+    flash[:success] = params[:email]+" account unlocked!"
+    redirect_to signin_path
+  end
+
   def activate
     user = User.find_by(email: params[:email], activation_token: params[:activation])
 
@@ -68,14 +81,9 @@ class AuthController < ActionController::Base
 
         if user
           if user.activated?
-            @user = user.authenticate(password)
-            if @user
-              if !@user.enabled?
-                cookies.delete(:auth_token)
-                @user = User.new
-                @user.errors[:base] << "Invalid username or password"
-              else
-
+            if user.enabled?
+              @user = user.authenticate(password)
+              if @user
                 if @user.two_factor?
                   redirect_to multi_factor_path(token: @user.auth_token) and return true
                 end
@@ -87,11 +95,14 @@ class AuthController < ActionController::Base
                 elsif @user.is_adviser?
                   redirect_to adviser_profile_path and return true
                 end
+              else
+                @user = User.new
+                @user.errors[:base] << "Invalid username or password"
               end
             else
-              #user found but password is incorrect
+              cookies.delete(:auth_token)
               @user = User.new
-              @user.errors[:base] << "Invalid username or password"
+              @user.errors[:base] << "Account has been locked due to failed login attempts. We have sent an email to "+email+" with instructions to unlock the account."
             end
           else
             if user.is_enterprise?
