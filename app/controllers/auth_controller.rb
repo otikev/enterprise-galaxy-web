@@ -45,6 +45,17 @@ class AuthController < ActionController::Base
     end
   end
 
+  def signout
+    if cookies[:auth_token] && cookies[:auth_token].length > 0
+      user = User.find_by_auth_token!(cookies[:auth_token])
+      if user
+        user.update_attribute(:auth_token,nil)
+      end
+      cookies.delete(:auth_token)
+    end
+    redirect_to signin_path
+  end
+
   def signin
     if request.post?
       email = params[:user][:email]
