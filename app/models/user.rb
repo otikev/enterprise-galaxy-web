@@ -59,7 +59,7 @@ class User < ApplicationRecord
     self.save!
     if self.google_authentic?(code)
       generate_auth_token
-      update_attribute('auth_token', self.auth_token)
+      self.update_attribute(:auth_token, self.auth_token)
       self
     else
       nil
@@ -72,8 +72,8 @@ class User < ApplicationRecord
     if BCrypt::Password.new(self.password_hash).is_password?(pass + self.password_salt)
       puts "password is valid"
       generate_auth_token
-      update_attribute('failed_login_attempts',0)
-      update_attribute('auth_token', self.auth_token)
+      self.update_attribute(:failed_login_attempts,0)
+      self.update_attribute(:auth_token, self.auth_token)
       if self.two_factor?
         self.password = pass #prevent password validation from failing
         unless self.google_secret
@@ -82,10 +82,10 @@ class User < ApplicationRecord
       end
       self
     else
-      update_attribute('failed_login_attempts',self.failed_login_attempts+1)
+      update_attribute(:failed_login_attempts,self.failed_login_attempts+1)
       if self.failed_login_attempts >= 3
-        update_attribute('unlock_token',User.digest(User.new_token))
-        update_attribute('enabled',false)
+        self.update_attribute(:unlock_token,User.digest(User.new_token))
+        self.update_attribute(:enabled,false)
 
         if is_enterprise?
           EnterpriseMailer.account_unlock(self, self.enterprise.business_name).deliver_now
