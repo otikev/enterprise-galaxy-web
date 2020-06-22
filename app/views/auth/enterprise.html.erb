@@ -40,7 +40,7 @@
             <div class="form-group row">
               <label class="col-lg-5 col-form-label text-right"><i class="icon-phone text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Phone Number:</label>
               <div class="col-lg-7">
-                <%= enterprise_form.text_field :phone, placeholder: "Phone Number", class: "form-control"  , :required=>true%>
+                <%= enterprise_form.text_field :office_mobile_number, placeholder: "Phone Number", class: "form-control"  , :required=>true%>
               </div>
             </div>
             <div class="form-group row">
@@ -82,7 +82,7 @@
             <div class="form-group row">
               <label class="col-lg-5 col-form-label text-right"><i class="icon-speakers text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;How did you find us?:</label>
               <div class="col-lg-7">
-                <%= enterprise_form.select :referral,[['Facebook',1],['LinkedIn',2],['Word of mouth',3],['TV',4]], {prompt: "Select Source" }, {class: "form-control"} %>
+                <%= enterprise_form.select :referral,['Friends Referral','Whatsapp','Facebook','LinkedIn','Twitter','Mailing List','Google Searches','Other'], {prompt: "Select Source" }, {class: "form-control"} %>
               </div>
             </div>
           <% end %>

@@ -27,17 +27,6 @@
       <!-- User details (with sample pattern) -->
       <div class="card">
         <div class="card-body border-top-0">
-          <div class="d-sm-flex flex-sm-wrap mb-3">
-            <div class="mr-3" style="margin-right: 10px;">
-              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
-                <i class="icon-user-tie"></i>
-              </div>
-            </div>
-            <div class="d-flex align-items-center">
-              <div class="font-weight-semibold">Business Name:&nbsp;&nbsp;&nbsp;</div>
-              <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.business_name %></div>
-            </div>
-          </div>
 
           <div class="d-sm-flex flex-sm-wrap mb-3">
             <div class="mr-3" style="margin-right: 10px;">
@@ -86,14 +75,6 @@
               <div class="ml-sm-auto mt-2 mt-sm-0"><%= @broad_sector.name %></div>
             </div>
           </div>
-        </div>
-      </div>
-      <!-- /user details (with sample pattern) -->
-    </div>
-    <div class="col-4">
-      <div class="card">
-        <div class="card-body border-top-0">
-
           <div class="d-sm-flex flex-sm-wrap mb-3">
             <div class="mr-3" style="margin-right: 10px;">
               <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
@@ -179,6 +160,81 @@
     <div class="col-4">
       <div class="card">
         <div class="card-body border-top-0">
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-mail5"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Office Mobile Number:&nbsp;&nbsp;&nbsp;</div>
+              <% if @enterprise.office_mobile_number %>
+                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.office_mobile_number %></div>
+              <% else %>
+                <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+              <% end %>
+            </div>
+          </div>
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-mail5"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Office Location (HQ):&nbsp;&nbsp;&nbsp;</div>
+              <% if @enterprise.office_location_hq %>
+                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.office_location_hq %></div>
+              <% else %>
+                <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+              <% end %>
+            </div>
+          </div>
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-mail5"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Google Map Location:&nbsp;&nbsp;&nbsp;</div>
+              <% if @enterprise.google_map_location %>
+                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.google_map_location %></div>
+              <% else %>
+                <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+              <% end %>
+            </div>
+          </div>
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-mail5"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Main Sector:&nbsp;&nbsp;&nbsp;</div>
+              <% if @enterprise.main_sector %>
+                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.main_sector %></div>
+              <% else %>
+                <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+              <% end %>
+            </div>
+          </div>
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-mail5"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Sub Sector:&nbsp;&nbsp;&nbsp;</div>
+              <% if @enterprise.sub_sector %>
+                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.sub_sector %></div>
+              <% else %>
+                <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+              <% end %>
+            </div>
+          </div>
 
           <div class="d-sm-flex flex-sm-wrap mb-3">
             <div class="mr-3" style="margin-right: 10px;">
@@ -187,14 +243,189 @@
               </div>
             </div>
             <div class="d-flex align-items-center">
-              <div class="font-weight-semibold">Office Phone:&nbsp;&nbsp;&nbsp;</div>
-              <% if @enterprise.office_phone %>
-                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.office_phone %></div>
+              <div class="font-weight-semibold">Financial Year Start:&nbsp;&nbsp;&nbsp;</div>
+              <% if @enterprise.financial_year_start_date %>
+                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.financial_year_start_date %></div>
               <% else %>
                 <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
               <% end %>
             </div>
           </div>
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-mail5"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Financial Year End:&nbsp;&nbsp;&nbsp;</div>
+              <% if @enterprise.financial_year_end_date %>
+                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.financial_year_end_date %></div>
+              <% else %>
+                <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+              <% end %>
+            </div>
+          </div>
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-mail5"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Employees (Full time):&nbsp;&nbsp;&nbsp;</div>
+              <% if @enterprise.num_employees_fulltime %>
+                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.num_employees_fulltime %></div>
+              <% else %>
+                <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+              <% end %>
+            </div>
+          </div>
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-mail5"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Employees (Part time):&nbsp;&nbsp;&nbsp;</div>
+              <% if @enterprise.num_employees_parttime %>
+                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.num_employees_parttime %></div>
+              <% else %>
+                <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body border-top-0">
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-mail5"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Name Of Founder:&nbsp;&nbsp;&nbsp;</div>
+              <% if @enterprise.name_of_founder %>
+                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.name_of_founder %></div>
+              <% else %>
+                <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+              <% end %>
+            </div>
+          </div>
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-mail5"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Founder Mobile Number:&nbsp;&nbsp;&nbsp;</div>
+              <% if @enterprise.founder_mobile_number %>
+                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.founder_mobile_number %></div>
+              <% else %>
+                <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+              <% end %>
+            </div>
+          </div>
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-mail5"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Founder Gender:&nbsp;&nbsp;&nbsp;</div>
+              <% if @enterprise.founder_gender %>
+                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.founder_gender %></div>
+              <% else %>
+                <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+              <% end %>
+            </div>
+          </div>
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-mail5"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Founder Date Of Birth:&nbsp;&nbsp;&nbsp;</div>
+              <% if @enterprise.founder_date_of_birth %>
+                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.founder_date_of_birth %></div>
+              <% else %>
+                <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card col-12">
+    <div class="card-body border-top-0">
+      <div class="d-sm-flex flex-sm-wrap mb-3">
+        <div class="mr-3" style="margin-right: 10px;">
+          <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+            <i class="icon-mail5"></i>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <div class="font-weight-semibold">Mission:&nbsp;&nbsp;&nbsp;</div>
+          <% if @enterprise.mission %>
+            <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.mission %></div>
+          <% else %>
+            <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+          <% end %>
+        </div>
+      </div>
+      <div class="d-sm-flex flex-sm-wrap mb-3">
+        <div class="mr-3" style="margin-right: 10px;">
+          <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+            <i class="icon-mail5"></i>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <div class="font-weight-semibold">Vision:&nbsp;&nbsp;&nbsp;</div>
+          <% if @enterprise.vision %>
+            <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.vision %></div>
+          <% else %>
+            <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+          <% end %>
+        </div>
+      </div>
+      <div class="d-sm-flex flex-sm-wrap mb-3">
+        <div class="mr-3" style="margin-right: 10px;">
+          <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+            <i class="icon-mail5"></i>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <div class="font-weight-semibold">Punch line:&nbsp;&nbsp;&nbsp;</div>
+          <% if @enterprise.punch_line %>
+            <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.punch_line %></div>
+          <% else %>
+            <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+          <% end %>
+        </div>
+      </div>
+      <div class="d-sm-flex flex-sm-wrap mb-3">
+        <div class="mr-3" style="margin-right: 10px;">
+          <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+            <i class="icon-mail5"></i>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <div class="font-weight-semibold">Brief Service Description:&nbsp;&nbsp;&nbsp;</div>
+          <% if @enterprise.brief_service_description %>
+            <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.brief_service_description %></div>
+          <% else %>
+            <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+          <% end %>
         </div>
       </div>
     </div>
