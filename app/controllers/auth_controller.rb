@@ -9,7 +9,7 @@ class AuthController < ActionController::Base
       user.update_attribute(:unlock_token, nil)
       user.update_attribute(:failed_login_attempts, 0)
     end
-    flash[:success] = params[:email]+" account unlocked!"
+    flash[:success] = params[:email] + " account unlocked!"
     redirect_to signin_path
   end
 
@@ -20,7 +20,7 @@ class AuthController < ActionController::Base
       user.update_attribute(:activated, true)
       user.update_attribute(:activated_at, Time.zone.now)
       user.update_attribute(:activation_token, nil)
-      flash[:success] = params[:email]+" account activated!"
+      flash[:success] = params[:email] + " account activated!"
     else
       flash[:danger] = "Invalid activation link!"
     end
@@ -51,7 +51,7 @@ class AuthController < ActionController::Base
     else
       @user = User.where(auth_token: params[:token]).first
       if @user
-        @user.update_attribute(:auth_token,nil)
+        @user.update_attribute(:auth_token, nil)
       else
         redirect_to signin_path and return false
       end
@@ -62,7 +62,7 @@ class AuthController < ActionController::Base
     if cookies[:auth_token] && cookies[:auth_token].length > 0
       user = User.find_by_auth_token!(cookies[:auth_token])
       if user
-        user.update_attribute(:auth_token,nil)
+        user.update_attribute(:auth_token, nil)
       end
       cookies.delete(:auth_token)
     end
@@ -73,9 +73,12 @@ class AuthController < ActionController::Base
     if request.post?
       email = params[:user][:email]
       password = params[:user][:password]
+      @user = User.new
       if !email || email == '' || !password || password == ''
-        flash.now[:warning]='You must provide an email and password'
+        flash.now[:warning] = 'You must provide an email and password'
         @user = User.new
+      elsif !verify_recaptcha(model: @user)
+        flash.now[:warning] = 'Captcha verification failed'
       else
         user = User.where(email: email).first
 
@@ -102,7 +105,7 @@ class AuthController < ActionController::Base
             else
               cookies.delete(:auth_token)
               @user = User.new
-              @user.errors[:base] << "Account has been locked due to failed login attempts. We have sent an email to "+email+" with instructions to unlock the account."
+              @user.errors[:base] << "Account has been locked due to failed login attempts. We have sent an email to " + email + " with instructions to unlock the account."
             end
           else
             if user.is_enterprise?
@@ -131,10 +134,10 @@ class AuthController < ActionController::Base
   def enterprise
     if request.post?
       @user = User.new(user_params)
-      if @user.save
+      if verify_recaptcha(model: @user) && @user.save
         EnterpriseMailer.account_activation(@user, @user.enterprise.business_name).deliver_now
         flash[:success] = "Registration success! Please check your email to activate your account."
-        redirect_to :controller => 'auth',:action => 'signin'
+        redirect_to :controller => 'auth', :action => 'signin'
       else
         render 'enterprise'
       end
@@ -147,10 +150,10 @@ class AuthController < ActionController::Base
   def adviser
     if request.post?
       @user = User.new(user_params)
-      if @user.save
+      if verify_recaptcha(model: @user) && @user.save
         EnterpriseMailer.account_activation(@user, @user.adviser.first_name).deliver_now
         flash[:success] = "Registration success! Please check your email to activate your account."
-        redirect_to :controller => 'auth',:action => 'signin'
+        redirect_to :controller => 'auth', :action => 'signin'
       else
         render 'adviser'
       end
@@ -164,7 +167,7 @@ class AuthController < ActionController::Base
     if request.post?
       @password_request = PasswordRequest.where(:token => params[:password_request][:token]).first
       if @password_request
-        @password_request.change_password(params[:password_request][:password],params[:password_request][:password_confirmation])
+        @password_request.change_password(params[:password_request][:password], params[:password_request][:password_confirmation])
         unless @password_request.errors.any?
           flash[:success] = 'your new password has been saved, you can now login'
           @password_request.delete
@@ -186,30 +189,35 @@ class AuthController < ActionController::Base
   def forgot_password
     if request.post?
       email = params[:email]
-      if email && email.length > 0
-        u = User.find_by_email(email)
-        if u
-          exists = PasswordRequest.where(:user_id => u.id, :used => false).first
-          if exists
-            exists.delete
-          end
-
-          success = PasswordRequest.send_password_reset(email)
-          if success
-            puts "Password request success"
-          else
-            puts "Password request failed"
-          end
-          flash[:info]  = 'Check your email for a password reset link.'
-          redirect_to signin_path
-        else
-          #email doesn't exist
-          #to prevent bad guys using the password reset tool to know if an email exists we'll just say an email has been sent
-          flash[:info]  = 'Check your email for a password reset link.'
-          redirect_to  signin_path
-        end
+      @user = User.new
+      if !verify_recaptcha(model: @user)
+        flash.now[:warning] = 'Captcha verification failed'
       else
-        flash[:warning] = 'The email cannot be blank'
+        if email && email.length > 0
+          u = User.find_by_email(email)
+          if u
+            exists = PasswordRequest.where(:user_id => u.id, :used => false).first
+            if exists
+              exists.delete
+            end
+
+            success = PasswordRequest.send_password_reset(email)
+            if success
+              puts "Password request success"
+            else
+              puts "Password request failed"
+            end
+            flash[:info] = 'Check your email for a password reset link.'
+            redirect_to signin_path
+          else
+            #email doesn't exist
+            #to prevent bad guys using the password reset tool to know if an email exists we'll just say an email has been sent
+            flash[:info] = 'Check your email for a password reset link.'
+            redirect_to signin_path
+          end
+        else
+          flash[:warning] = 'The email cannot be blank'
+        end
       end
     end
   end
@@ -217,11 +225,11 @@ class AuthController < ActionController::Base
   private
 
   def user_params
-    params.require(:user).permit(:email,:password,:password_confirmation,
-                                 {enterprise_attributes:[:business_name,:business_form_id,:broad_sector_name_id,
-                                                        :registration_date,:start_of_operations_date,:country,
-                                                         :phone,:referral]},
-                                 {adviser_attributes:[:title,:first_name,:other_names,:date_of_birth,:cell_phone,
-                                                     :country_of_residence]})
+    params.require(:user).permit(:email, :password, :password_confirmation,
+                                 {enterprise_attributes: [:business_name, :business_form_id, :broad_sector_name_id,
+                                                          :registration_date, :start_of_operations_date, :country,
+                                                          :phone, :referral]},
+                                 {adviser_attributes: [:title, :first_name, :other_names, :date_of_birth, :cell_phone,
+                                                       :country_of_residence]})
   end
 end
