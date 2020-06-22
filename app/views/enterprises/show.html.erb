@@ -1,1 +1,207 @@
-<%= @enterprise.business_name %>
+<div class="content">
+  <!-- Application status -->
+  <div class="card">
+    <div class="card-header header-elements-inline">
+      <h5 class="card-title">Profile Completion Status</h5>
+    </div>
+
+    <div class="card-body">
+      <ul class="list-unstyled mb-0">
+        <li class="mb-3">
+          <div class="d-flex align-items-center mb-1"><%= @enterprise.profile_completion_status %>%</div>
+          <div class="progress" style="height: 0.375rem;">
+            <div class="progress-bar bg-success" style="width: <%= @enterprise.profile_completion_status %>%">
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="text-right col-12">
+        By completing your profile, you will get access to all Enterprise Galaxy features.
+      </div>
+    </div>
+  </div>
+  <!-- /application status -->
+  <div class="row-tile text-right"><h2>My Profile</h2></div>
+  <div class="row">
+    <div class="col-4">
+      <!-- User details (with sample pattern) -->
+      <div class="card">
+        <div class="card-body border-top-0">
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-user-tie"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Business Name:&nbsp;&nbsp;&nbsp;</div>
+              <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.business_name %></div>
+            </div>
+          </div>
+
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-profile"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Registration Date:&nbsp;&nbsp;&nbsp;</div>
+              <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.registration_date %></div>
+            </div>
+          </div>
+
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-profile"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Start of Operations:&nbsp;&nbsp;&nbsp;</div>
+              <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.start_of_operations_date %></div>
+            </div>
+          </div>
+
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-calendar"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Business Form:&nbsp;&nbsp;&nbsp;</div>
+              <div class="ml-sm-auto mt-2 mt-sm-0"><%= @business_form.name %></div>
+            </div>
+          </div>
+
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-person"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Broad Sector:&nbsp;&nbsp;&nbsp;</div>
+              <div class="ml-sm-auto mt-2 mt-sm-0"><%= @broad_sector.name %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /user details (with sample pattern) -->
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body border-top-0">
+
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-phone2"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Postal Address:&nbsp;&nbsp;&nbsp;</div>
+              <% if @enterprise.postal_address %>
+                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.postal_address %></div>
+              <% else %>
+                <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-location3"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Postal Code:&nbsp;&nbsp;&nbsp;</div>
+              <% if @enterprise.postal_code %>
+                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.postal_code %></div>
+              <% else %>
+                <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-address-book2"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Country:&nbsp;&nbsp;&nbsp;</div>
+              <% if @enterprise.country %>
+                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.country %></div>
+              <% else %>
+                <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-mailbox"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">City:&nbsp;&nbsp;&nbsp;</div>
+              <% if @enterprise.city %>
+                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.city %></div>
+              <% else %>
+                <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-city"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Office Number:&nbsp;&nbsp;&nbsp;</div>
+              <% if @enterprise.office_number %>
+                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.office_number %></div>
+              <% else %>
+                <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body border-top-0">
+
+          <div class="d-sm-flex flex-sm-wrap mb-3">
+            <div class="mr-3" style="margin-right: 10px;">
+              <div class="btn bg-transparent text-success rounded-round border-2 btn-icon">
+                <i class="icon-mail5"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="font-weight-semibold">Office Phone:&nbsp;&nbsp;&nbsp;</div>
+              <% if @enterprise.office_phone %>
+                <div class="ml-sm-auto mt-2 mt-sm-0"><%= @enterprise.office_phone %></div>
+              <% else %>
+                <div class="ml-sm-auto mt-2 mt-sm-0">Not Set</div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-bottom: 10px;">
+    <div class="text-left col-12">
+      <%= link_to "Edit Profile", enterprise_edit_profile_path, class: "btn btn-success btn-block col-1" %>
+    </div>
+  </div>
+</div>

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   #Enterprises controller
   match '/enterprise_profile', to: 'enterprises#show', via: 'get'
   match '/enterprise_dashboard', to: 'enterprises#dashboard', via: 'get'
+  match '/enterprise_edit_profile', to: 'enterprises#edit_profile', via: [:get, :post]
   #End Enterprises controller
 
   #Advisers controller

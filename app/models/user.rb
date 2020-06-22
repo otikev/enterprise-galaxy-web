@@ -50,7 +50,7 @@ class User < ApplicationRecord
     if is_adviser?
       self.adviser.profile_completion_status
     elsif is_enterprise?
-      0 #To be implemented
+      self.enterprise.profile_completion_status
     end
   end
   def two_factor(code)
