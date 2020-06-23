@@ -16,91 +16,91 @@
           </div>
 
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-user-tie text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Title:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-user-tie text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Title:</label>
             <div class="col-lg-7">
               <%= adviser_form.select :title,['Mr.','Mrs.','Ms.','Dr.','Rev.'], {prompt: "Select Title" }, {class: "form-control"} %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-profile text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;First Name:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-profile text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;First Name:</label>
             <div class="col-lg-7">
               <%= adviser_form.text_field :first_name, placeholder: "First Name", class: "form-control" , :required=>true %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-profile text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Other Names:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-profile text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Other Names:</label>
             <div class="col-lg-7">
               <%= adviser_form.text_field :other_names, placeholder: "Other Names", class: "form-control" , :required=>true %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-calendar text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date Of Birth:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-calendar text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date Of Birth:</label>
             <div class="col-lg-7">
               <%= adviser_form.date_field :date_of_birth, class: "form-control",placeholder: "Date of Birth" , :required=>true%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-person text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gender:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-person text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gender:</label>
             <div class="col-lg-7">
               <%= adviser_form.select :gender,['Male','Female'], {prompt: "Select Gender" }, {class: "form-control"} %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-phone2 text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cell Phone:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-phone2 text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cell Phone:</label>
             <div class="col-lg-7">
               <%= adviser_form.text_field :cell_phone, placeholder: "Cell Phone", class: "form-control" , :required=>true %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-location3 text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Country of residence:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-location3 text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Country of residence:</label>
             <div class="col-lg-7">
               <%= adviser_form.country_select :country_of_residence, ["Kenya"], {prompt: "Select Country" }, {class: "form-control"} %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-address-book2 text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nationality:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-address-book2 text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nationality:</label>
             <div class="col-lg-7">
               <%= adviser_form.country_select :nationality, ["Kenya"], {prompt: "Select Nationality" }, {class: "form-control"} %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-mailbox text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P.O. Box:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-mailbox text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P.O. Box:</label>
             <div class="col-lg-7">
               <%= adviser_form.text_field :po_box, placeholder: "P.O. Box", class: "form-control" %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-city text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;City:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-city text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;City:</label>
             <div class="col-lg-7">
               <%= adviser_form.text_field :city, placeholder: "City", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-mail5 text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Personal Email:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-mail5 text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Personal Email:</label>
             <div class="col-lg-7">
               <%= adviser_form.text_field :personal_email, placeholder: "Personal Email", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-mail-read text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Work Email:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-mail-read text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Work Email:</label>
             <div class="col-lg-7">
               <%= adviser_form.text_field :work_email, placeholder: "Work Email", class: "form-control" %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-comments text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Preferred Mode Of Communication:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-comments text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Preferred Mode Of Communication:</label>
             <div class="col-lg-7">
               <%= adviser_form.text_field :preferred_mode_of_comms, placeholder: "Mode Of Communication", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-briefcase3 text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Employment Status:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-briefcase3 text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Employment Status:</label>
             <div class="col-lg-7">
               <%= adviser_form.select :employment_status,[['Employed','Employed'],['Unemployed','Unemployed']], {prompt: "Employment Status" }, {class: "form-control"} %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-comments text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Current Employer:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-comments text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Current Employer:</label>
             <div class="col-lg-7">
               <%= adviser_form.text_field :current_employer, placeholder: "Current Employer", class: "form-control"%>
             </div>

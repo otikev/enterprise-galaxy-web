@@ -9,10 +9,10 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -92,18 +92,18 @@
         <div class="card-body">
           <div class="media">
             <div class="mr-3">
-              <a href="#"><%= image_tag('placeholders/placeholder.jpg',class:"rounded-circle", size: "38", alt: "") %></a>
+              <a href="#"><%= image_tag('placeholders/placeholder.jpg',class:"img img-rounded", size: "38", alt: "") %></a>
             </div>
 
             <div class="media-body">
-              <div class="media-title font-weight-semibold text-center">
+              <div class="media-title font-weight-semibold">
                 <% if @current_user.is_enterprise? %>
-                  <span><%= @current_user.enterprise.business_name %></span>
+                  <%= @current_user.enterprise.business_name %>
                 <% elsif @current_user.is_adviser? %>
-                  <span><%= @current_user.adviser.first_name %>&nbsp;<%= @current_user.adviser.other_names %> </span>
+                  <%= @current_user.adviser.first_name %>&nbsp;<%= @current_user.adviser.other_names %>
                 <% end %>
               </div>
-              <div class="font-size-xs opacity-50 text-center">
+              <div class="font-size-xs opacity-50">
                 <i class="icon-pin font-size-sm"></i> &nbsp;
                 <% if @current_user.is_enterprise? %>
                   <%= @current_user.enterprise.country %>,<%= @current_user.enterprise.city %>
@@ -121,6 +121,10 @@
       <div class="card card-sidebar-mobile">
         <ul class="nav nav-sidebar" data-nav-type="accordion">
           <!-- Main -->
+          <li class="nav-item-header">
+            <div class="text-uppercase font-size-xs line-height-xs">Main</div>
+            <i class="icon-menu" title="Main"></i>
+          </li>
           <li class="nav-item">
             <% if @current_user.is_enterprise? %>
               <%= link_to enterprise_dashboard_path, class: "nav-link" do %>
