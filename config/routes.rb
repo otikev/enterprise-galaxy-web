@@ -29,6 +29,10 @@ Rails.application.routes.draw do
   match '/adviser_edit_profile', to: 'advisers#edit_profile', via: [:get, :post]
   #End Advisers controller
 
+  #Content ContentController
+  match '/all_content', to: 'content#all', via: 'get'
+  #End Content ContentController
+
   #Other
   match '/countdown', to: 'site#countdown', via: 'get'
   match '/theme', to: 'enterprises#theme', via: 'get'
