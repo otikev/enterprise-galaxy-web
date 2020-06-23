@@ -106,9 +106,9 @@
               <div class="font-size-xs opacity-50">
                 <i class="icon-pin font-size-sm"></i> &nbsp;
                 <% if @current_user.is_enterprise? %>
-                  <%= @current_user.enterprise.country %>,<%= @current_user.enterprise.city %>
+                  <%= @current_user.enterprise.country %>,&nbsp;<%= @current_user.enterprise.city %>
                 <% elsif @current_user.is_adviser? %>
-                  <%= @current_user.adviser.country_of_residence %>,<%= @current_user.adviser.city %>
+                  <%= @current_user.adviser.country_of_residence %>,&nbsp;<%= @current_user.adviser.city %>
                 <% end %>
               </div>
             </div>
@@ -127,14 +127,14 @@
           </li>
           <li class="nav-item">
             <% if @current_user.is_enterprise? %>
-              <%= link_to enterprise_dashboard_path, class: "nav-link" do %>
+              <%= link_to enterprise_dashboard_path, class: "nav-link #{current_page?('/enterprise_dashboard')? 'active':''}" do %>
                 <i class="icon-home4"></i>
                 <span>
 									Dashboard
 								</span>
               <% end %>
             <% elsif @current_user.is_adviser? %>
-              <%= link_to adviser_dashboard_path, class: "nav-link" do %>
+              <%= link_to adviser_dashboard_path, class: "nav-link #{current_page?('/adviser_dashboard')? 'active':''}" do %>
                 <i class="icon-home4"></i>
                 <span>
 									Dashboard
@@ -144,17 +144,17 @@
           </li>
           <li class="nav-item">
             <% if @current_user.is_enterprise? %>
-              <%= link_to enterprise_profile_path, class: "nav-link" do %>
+              <%= link_to enterprise_profile_path, class: "nav-link #{current_page?('/enterprise_profile')? 'active':''}" do %>
                 <i class="icon-user"></i>
                 <span>
-                Profile (<%= @current_user.profile_completion_status %>%)
+                Profile &nbsp;<span class="badge bg-success badge-pill"><%= @current_user.profile_completion_status %>%</span>
               </span>
               <% end %>
             <% elsif @current_user.is_adviser? %>
-              <%= link_to adviser_profile_path, class: "nav-link" do %>
+              <%= link_to adviser_profile_path, class: "nav-link #{current_page?('/adviser_profile')? 'active':''}" do %>
                 <i class="icon-user"></i>
                 <span>
-                Profile (<%= @current_user.profile_completion_status %>%)
+                Profile &nbsp;<span class="badge bg-success badge-pill"><%= @current_user.profile_completion_status %>%</span>
               </span>
               <% end %>
             <% end %>
