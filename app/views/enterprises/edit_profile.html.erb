@@ -15,147 +15,146 @@
             <span class="px-2">Enterprise Details</span>
           </div>
 
-
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business Name:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business Name:</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :business_name, placeholder: "Business Name", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-list text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business Form:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-list text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business Form:</label>
             <div class="col-lg-7">
               <%= enterprise_form.collection_select :business_form_id, BusinessForm.all, :id, :name,{prompt: "Select Business" }, {class: "form-control"} %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-list text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Broad Sector:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-list text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Broad Sector:</label>
             <div class="col-lg-7">
               <%= enterprise_form.collection_select :broad_sector_name_id, BroadSectorName.all, :id, :name, {prompt: "Select Broad Sector" }, {class: "form-control"} %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Main Sector:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Main Sector:</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :main_sector, placeholder: "Main Sector", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sub Sector:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sub Sector:</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :sub_sector, placeholder: "Sub Sector", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-calendar text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date of Registration:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-calendar text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date of Registration:</label>
             <div class="col-lg-7">
               <%= enterprise_form.date_field :registration_date, class: "form-control",placeholder: "Date of Registration"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-calendar text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Start of Business Operations:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-calendar text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Start of Business Operations:</label>
             <div class="col-lg-7">
               <%= enterprise_form.date_field :start_of_operations_date, class: "form-control",placeholder: "Date of Registration"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Postal Address:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Postal Address:</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :postal_address, placeholder: "Postal Address", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Postal Code:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Postal Code:</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :postal_code, placeholder: "Postal Code", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-list text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Country:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-list text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Country:</label>
             <div class="col-lg-7">
               <%= enterprise_form.country_select :country, ["Kenya"], {prompt: "Select Country" }, {class: "form-control"} %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;City:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;City:</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :city, placeholder: "City", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Office Number:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Office Number:</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :office_number, placeholder: "Office Number", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-speakers text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;How did you find us?:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-speakers text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;How did you find us?:</label>
             <div class="col-lg-7">
               <%= enterprise_form.select :referral,['Friends Referral','Whatsapp','Facebook','LinkedIn','Twitter','Mailing List','Google Searches','Other'], {prompt: "Select Source" }, {class: "form-control"} %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Office Mobile Number:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Office Mobile Number:</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :office_mobile_number, placeholder: "Office Mobile Number", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Office Location (HQ):</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Office Location (HQ):</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :office_location_hq, placeholder: "Office Location (HQ)", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Location (Google Map):</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Location (Google Map):</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :google_map_location, placeholder: "Google Map location", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Financial Year Start Date:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Financial Year Start Date:</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :financial_year_start_date, placeholder: "dd/mm", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Financial Year End Date:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Financial Year End Date:</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :financial_year_end_date, placeholder: "dd/mm", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mission:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mission:</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :mission, placeholder: "Mission", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vision:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vision:</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :vision, placeholder: "Vision", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Punch line:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Punch line:</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :punch_line, placeholder: "Punch Line", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Brief Service Description:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Brief Service Description:</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :brief_service_description, placeholder: "Brief Service Description", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Employees (Fulltime):</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Employees (Fulltime):</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :num_employees_fulltime, placeholder: "Number of Employees (Fulltime)", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Employees (Parttime):</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Employees (Parttime):</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :num_employees_parttime, placeholder: "Number of Employees (Parttime)", class: "form-control"%>
             </div>
@@ -164,25 +163,25 @@
             <span class="px-2">Founder Details</span>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name of Founder:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name of Founder:</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :name_of_founder, placeholder: "Name of Founder", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Founder Mobile Number:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-office text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Founder Mobile Number:</label>
             <div class="col-lg-7">
               <%= enterprise_form.text_field :founder_mobile_number, placeholder: "", class: "form-control"%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-person text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Founder Gender:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-person text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Founder Gender:</label>
             <div class="col-lg-7">
               <%= enterprise_form.select :founder_gender,['Male','Female'], {prompt: "Select Gender" }, {class: "form-control"} %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><i class="icon-calendar text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Founder Date of Birth:</label>
+            <label class="col-lg-5 col-form-label"><i class="icon-calendar text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Founder Date of Birth:</label>
             <div class="col-lg-7">
               <%= enterprise_form.date_field :founder_date_of_birth, class: "form-control",placeholder: ""%>
             </div>
