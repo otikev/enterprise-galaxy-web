@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_22_181036) do
+ActiveRecord::Schema.define(version: 2020_06_24_161621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admins", force: :cascade do |t|
+    t.string "first_name"
+    t.string "other_names"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_admins_on_user_id"
+  end
 
   create_table "advisers", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -81,6 +90,7 @@ ActiveRecord::Schema.define(version: 2020_06_22_181036) do
     t.string "brief_service_description"
     t.integer "num_employees_fulltime"
     t.integer "num_employees_parttime"
+    t.string "other_broad_sector"
     t.index ["broad_sector_name_id"], name: "index_enterprises_on_broad_sector_name_id"
     t.index ["business_form_id"], name: "index_enterprises_on_business_form_id"
   end
@@ -103,7 +113,7 @@ ActiveRecord::Schema.define(version: 2020_06_22_181036) do
     t.boolean "enabled"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "two_factor", default: false
+    t.boolean "two_factor", default: true
     t.datetime "activated_at"
     t.boolean "activated", default: false
     t.string "google_secret"
@@ -113,4 +123,5 @@ ActiveRecord::Schema.define(version: 2020_06_22_181036) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "admins", "users"
 end

@@ -25,6 +25,7 @@ class User < ApplicationRecord
 
   has_one :enterprise
   has_one :adviser
+  has_one :admin
 
   accepts_nested_attributes_for :enterprise
   accepts_nested_attributes_for :adviser
