@@ -36,7 +36,7 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: Utils::VALID_EMAIL_REGEX },uniqueness: { case_sensitive: false }
   validates :password, :presence =>true,:length => { :minimum => 5, :maximum => 40 },:confirmation =>true
 
-  acts_as_google_authenticated :lookup_token => :mfa_secret, :encrypt_secrets => true
+  acts_as_google_authenticated :lookup_token => :mfa_secret, :encrypt_secrets => true, :issuer => 'enterprisegalaxy.com'
 
   def is_enterprise?
     self.enterprise != nil
