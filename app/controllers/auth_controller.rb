@@ -97,6 +97,8 @@ class AuthController < ActionController::Base
                   redirect_to enterprise_profile_path and return true
                 elsif @user.is_adviser?
                   redirect_to adviser_profile_path and return true
+                elsif @user.is_admin?
+                  redirect_to admins_dashboard_path and return true
                 end
               else
                 @user = User.new

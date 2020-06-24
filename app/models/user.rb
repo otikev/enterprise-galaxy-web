@@ -47,6 +47,10 @@ class User < ApplicationRecord
     self.adviser != nil
   end
 
+  def is_admin?
+    self.admin != nil
+  end
+
   def profile_completion_status
     if is_adviser?
       self.adviser.profile_completion_status

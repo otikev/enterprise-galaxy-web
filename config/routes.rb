@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root 'site#home'
@@ -32,6 +33,12 @@ Rails.application.routes.draw do
   #Content ContentController
   match '/all_content', to: 'content#all', via: 'get'
   #End Content ContentController
+
+  #Admins controller
+  match '/admins/dashboard', to: 'admins#dashboard', via: 'get'
+  match '/admins/enterprises', to: 'admins#enterprises', via: 'get'
+  match '/admins/advisers', to: 'admins#advisers', via: 'get'
+  #End Admins controller
 
   #Other
   match '/countdown', to: 'site#countdown', via: 'get'
