@@ -226,7 +226,7 @@ class AuthController < ActionController::Base
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation,
-                                 {enterprise_attributes: [:business_name, :business_form_id, :broad_sector_name_id,
+                                 {enterprise_attributes: [:business_name, :business_form_id, :broad_sector_name_id, :other_broad_sector,
                                                           :registration_date, :start_of_operations_date, :country,
                                                           :phone, :referral]},
                                  {adviser_attributes: [:title, :first_name, :other_names, :date_of_birth, :cell_phone,
