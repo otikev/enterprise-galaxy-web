@@ -16,7 +16,7 @@
           <%= f.hidden_field :email, :value => @user.email %>
 
           <div class="text-center">
-            <h5>Scan the QR code on your Google Authenticator app and enter the code below.</h5>
+            <h5>Scan the QR code using your Google Authenticator app and enter the code below.</h5>
             <img src="<%= @user.google_qr_uri %>">
           </div>
           <div class="form-group form-group-feedback form-group-feedback-left">
