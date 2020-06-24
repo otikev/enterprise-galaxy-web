@@ -11,7 +11,7 @@
 #  enabled               :boolean
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
-#  two_factor            :boolean          default("false")
+#  two_factor            :boolean          default("true")
 #  activated_at          :datetime
 #  activated             :boolean          default("false")
 #  google_secret         :string

@@ -35,6 +35,7 @@
 #  brief_service_description :string
 #  num_employees_fulltime    :integer
 #  num_employees_parttime    :integer
+#  other_broad_sector        :string
 #
 
 class Enterprise < ApplicationRecord
