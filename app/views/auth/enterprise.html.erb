@@ -59,6 +59,8 @@
               <label class="col-lg-5 col-form-label text-right"><i class="icon-list text-muted"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Broad Sector:</label>
               <div class="col-lg-7">
                 <%= enterprise_form.collection_select :broad_sector_name_id, BroadSectorName.all, :id, :name, {prompt: "Select Broad Sector" }, {class: "form-control"} %>
+
+                <input id="other_broad_sector" class="form-control mt-2" type="text" name="user[enterprise_attributes][other_broad_sector]" placeholder="Other (Specify)" style="display: none;">
               </div>
             </div>
             <div class="form-group row">
@@ -109,3 +111,24 @@
 
   </div>
   <!-- /content area -->
+
+<script>
+  element = document
+            .getElementById("user_enterprise_attributes_broad_sector_name_id")
+            .addEventListener('change', showInputField);
+
+  
+  function showInputField() {
+    var selectedOption = document
+                        .querySelector('#user_enterprise_attributes_broad_sector_name_id')
+                        .selectedOptions[0]
+                        .text;
+    
+    if (selectedOption == "Other (Specify)"){
+      document.getElementById("other_broad_sector").style.display = "block";
+    }else {
+      document.getElementById("other_broad_sector").style.display = "none";
+    }
+  }
+
+</script>
