@@ -1,0 +1,18 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Business Name</th>
+      <th>Broad Sector</th>
+      <th>Country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @enterprises.each do |enterprise| %>
+      <tr>
+        <td><%= enterprise.business_name %></td>
+        <td> - </td>
+        <td><%= enterprise.country %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

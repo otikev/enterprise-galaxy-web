@@ -101,6 +101,8 @@
                   <%= @current_user.enterprise.business_name %>
                 <% elsif @current_user.is_adviser? %>
                   <%= @current_user.adviser.first_name %>&nbsp;<%= @current_user.adviser.other_names %>
+                <% elsif @current_user.is_admin? %>
+                  <%= @current_user.admin.first_name %>&nbsp;<%= @current_user.admin.other_names %> 
                 <% end %>
               </div>
               <div class="font-size-xs opacity-50">
@@ -159,6 +161,18 @@
               <% end %>
             <% end %>
           </li>
+          
+          <% if @current_user.is_admin? %>
+            <li class="nav-item">
+              <%= link_to admins_enterprises_path, class: "nav-link #{current_page?('/admins/enterprises')? 'active':''}" do %>
+                <i class="icon-office"></i>
+                <span>
+                  Enterprises
+                </span>
+              <% end %>
+            </li>
+          <% end %>
+          
           <li class="nav-item">
             <%= link_to all_content_path, class: "nav-link #{current_page?('/all_content')? 'active':''}" do %>
               <i class="icon-download7"></i>
