@@ -110,6 +110,8 @@ GEM
     erubi (1.9.0)
     execjs (2.7.0)
     ffi (1.12.2)
+    font-awesome-rails (4.7.0.5)
+      railties (>= 3.2, < 6.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     google-authenticator-rails (2.0.0)
@@ -272,6 +274,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   country-select
   dotenv-rails
+  font-awesome-rails
   google-authenticator-rails
   jbuilder (~> 2.7)
   jquery-rails

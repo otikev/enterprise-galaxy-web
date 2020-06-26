@@ -22,6 +22,7 @@ gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'google-authenticator-rails'
 gem 'mailjet', :git => 'https://github.com/mailjet/mailjet-gem.git'
+gem "font-awesome-rails"
 
 gem 'country-select'
 # Use Redis adapter to run Action Cable in production
