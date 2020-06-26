@@ -23,6 +23,8 @@ gem 'bootstrap-sass'
 gem 'google-authenticator-rails'
 gem 'mailjet', :git => 'https://github.com/mailjet/mailjet-gem.git'
 gem "font-awesome-rails"
+# Enforce Rails best practices and coding conventions
+gem 'rubocop-rails', require: false
 
 gem 'country-select'
 # Use Redis adapter to run Action Cable in production
