@@ -15,20 +15,20 @@
             <span class="px-2">Your credentials</span>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><%= fa_icon "envelope"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Email:</label>
+            <label class="col-lg-5 col-form-label text-left"><%= fa_icon "envelope"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Email:</label>
 
             <div class="col-lg-7">
               <%= form.text_field :email,placeholder: "Contact Email",class: "form-control", :required=>true %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><%= fa_icon "unlock-alt"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Password:</label>
+            <label class="col-lg-5 col-form-label text-left"><%= fa_icon "unlock-alt"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Password:</label>
             <div class="col-lg-7">
               <%= form.password_field :password ,placeholder: "Contact Password", class: "form-control" , :required=>true%>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><%= fa_icon "unlock-alt"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password Confirmation:</label>
+            <label class="col-lg-5 col-form-label text-left"><%= fa_icon "unlock-alt"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password Confirmation:</label>
             <div class="col-lg-7">
               <%= form.password_field :password_confirmation ,placeholder: "Confirm Password", class: "form-control" , :required=>true%>
             </div>
@@ -39,25 +39,25 @@
 
           <%= form.fields_for :enterprise, @enterprise do |enterprise_form| %>
             <div class="form-group row">
-              <label class="col-lg-5 col-form-label text-right"><%= fa_icon "phone"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Phone Number:</label>
+              <label class="col-lg-5 col-form-label text-left"><%= fa_icon "phone"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Phone Number:</label>
               <div class="col-lg-7">
                 <%= enterprise_form.text_field :office_mobile_number, placeholder: "Phone Number", class: "form-control"  , :required=>true%>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-lg-5 col-form-label text-right"><%= fa_icon "building"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business Name:</label>
+              <label class="col-lg-5 col-form-label text-left"><%= fa_icon "building"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business Name:</label>
               <div class="col-lg-7">
                 <%= enterprise_form.text_field :business_name, placeholder: "Business Name", class: "form-control"  , :required=>true%>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-lg-5 col-form-label text-right"><%= fa_icon "th-list"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business Form:</label>
+              <label class="col-lg-5 col-form-label text-left"><%= fa_icon "th-list"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business Form:</label>
               <div class="col-lg-7">
                 <%= enterprise_form.collection_select :business_form_id, BusinessForm.all, :id, :name,{prompt: "Select Business" }, {class: "form-control"} %>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-lg-5 col-form-label text-right"><%= fa_icon "industry"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Broad Sector:</label>
+              <label class="col-lg-5 col-form-label text-left"><%= fa_icon "industry"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Broad Sector:</label>
               <div class="col-lg-7">
                 <%= enterprise_form.collection_select :broad_sector_name_id, BroadSectorName.all, :id, :name, {prompt: "Select Broad Sector" }, {class: "form-control"} %>
 
@@ -65,31 +65,31 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-lg-5 col-form-label text-right"><%= fa_icon "calendar"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date of Registration:</label>
+              <label class="col-lg-5 col-form-label text-left"><%= fa_icon "calendar"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date of Registration:</label>
               <div class="col-lg-7">
                 <%= enterprise_form.date_field :registration_date, class: "form-control",placeholder: "Date of Registration", :required=>true %>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-lg-5 col-form-label text-right"><%= fa_icon "calendar-check-o"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Start of Business Operations:</label>
+              <label class="col-lg-5 col-form-label text-left"><%= fa_icon "calendar-check-o"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Start of Business Operations:</label>
               <div class="col-lg-7">
                 <%= enterprise_form.date_field :start_of_operations_date, class: "form-control",placeholder: "Date of Registration", :required=>true %>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-lg-5 col-form-label text-right"><%= fa_icon "globe"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Country:</label>
+              <label class="col-lg-5 col-form-label text-left"><%= fa_icon "globe"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Country:</label>
               <div class="col-lg-7">
                 <%= enterprise_form.country_select :country, ["Kenya"], {prompt: "Select Country" }, {class: "form-control"} %>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-lg-5 col-form-label text-right"><%= fa_icon "search"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;How did you find us?:</label>
+              <label class="col-lg-5 col-form-label text-left"><%= fa_icon "search"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;How did you find us?:</label>
               <div class="col-lg-7">
                 <%= enterprise_form.select :referral,['Friends Referral','Whatsapp','Facebook','LinkedIn','Twitter','Mailing List','Google Searches','Other'], {prompt: "Select Source" }, {class: "form-control"} %>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-lg-5 col-form-label text-right"><%= fa_icon "user-md"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Are you human?:</label>
+              <label class="col-lg-5 col-form-label text-left"><%= fa_icon "user-md"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Are you human?:</label>
               <div class="col-lg-7">
                 <%= recaptcha_tags %>
               </div>

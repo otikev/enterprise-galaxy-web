@@ -18,19 +18,19 @@
             <span class="px-2">Your credentials</span>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><%= fa_icon "envelope"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Email:</label>
+            <label class="col-lg-5 col-form-label text-left"><%= fa_icon "envelope"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Email:</label>
             <div class="col-lg-7">
               <%= form.text_field :email,placeholder: "Contact Email",class: "form-control", :required=>true %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><%= fa_icon "unlock-alt"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Password:</label>
+            <label class="col-lg-5 col-form-label text-left"><%= fa_icon "unlock-alt"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Password:</label>
             <div class="col-lg-7">
               <%= form.password_field :password ,placeholder: "Contact Password", class: "form-control", :required=>true %>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-5 col-form-label text-right"><%= fa_icon "unlock-alt"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password Confirmation:</label>
+            <label class="col-lg-5 col-form-label text-left"><%= fa_icon "unlock-alt"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password Confirmation:</label>
             <div class="col-lg-7">
               <%= form.password_field :password_confirmation ,placeholder: "Confirm Password", class: "form-control", :required=>true %>
             </div>
@@ -41,43 +41,43 @@
 
           <%= form.fields_for :adviser, @adviser do |adviser_form| %>
             <div class="form-group row">
-              <label class="col-lg-5 col-form-label text-right"><%= fa_icon "user"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Title:</label>
+              <label class="col-lg-5 col-form-label text-left"><%= fa_icon "user"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Title:</label>
               <div class="col-lg-7">
                 <%= adviser_form.select :title,[['Mr.',1],['Mrs.',2],['Ms.',3],['Dr.',4],['Rev.',4]], {prompt: "Select Title" }, {class: "form-control"} %>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-lg-5 col-form-label text-right"><%= fa_icon "user-circle"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;First Name:</label>
+              <label class="col-lg-5 col-form-label text-left"><%= fa_icon "user-circle"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;First Name:</label>
               <div class="col-lg-7">
                 <%= adviser_form.text_field :first_name, placeholder: "First Name", class: "form-control" , :required=>true %>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-lg-5 col-form-label text-right"><%= fa_icon "user-circle"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Other Names:</label>
+              <label class="col-lg-5 col-form-label text-left"><%= fa_icon "user-circle"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Other Names:</label>
               <div class="col-lg-7">
                 <%= adviser_form.text_field :other_names, placeholder: "Other Names", class: "form-control" , :required=>true %>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-lg-5 col-form-label text-right"><%= fa_icon "calendar"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date Of Birth:</label>
+              <label class="col-lg-5 col-form-label text-left"><%= fa_icon "calendar"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date Of Birth:</label>
               <div class="col-lg-7">
                 <%= adviser_form.date_field :date_of_birth, class: "form-control",placeholder: "Date of Birth" , :required=>true%>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-lg-5 col-form-label text-right"><%= fa_icon "mobile"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cell Phone:</label>
+              <label class="col-lg-5 col-form-label text-left"><%= fa_icon "mobile"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cell Phone:</label>
               <div class="col-lg-7">
                 <%= adviser_form.text_field :cell_phone, placeholder: "Cell Phone", class: "form-control" , :required=>true %>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-lg-5 col-form-label text-right"><%= fa_icon "globe"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Country of residence:</label>
+              <label class="col-lg-5 col-form-label text-left"><%= fa_icon "globe"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Country of residence:</label>
               <div class="col-lg-7">
                 <%= adviser_form.country_select :country_of_residence, ["Kenya"], {prompt: "Select Country" }, {class: "form-control"} %>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-lg-5 col-form-label text-right"><%= fa_icon "user-md"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Are you human?:</label>
+              <label class="col-lg-5 col-form-label text-left"><%= fa_icon "user-md"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Are you human?:</label>
               <div class="col-lg-7">
                 <%= recaptcha_tags %>
               </div>
