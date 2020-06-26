@@ -1,7 +1,6 @@
 class AuthController < ActionController::Base
-
   def unlock
-    #TODO: show page with Captcha
+    # TODO: show page with Captcha
     user = User.find_by(email: params[:email], unlock_token: params[:token])
 
     if user
@@ -9,7 +8,7 @@ class AuthController < ActionController::Base
       user.update_attribute(:unlock_token, nil)
       user.update_attribute(:failed_login_attempts, 0)
     end
-    flash[:success] = params[:email] + " account unlocked!"
+    flash[:success] = params[:email] + ' account unlocked!'
     redirect_to signin_path
   end
 
@@ -20,9 +19,9 @@ class AuthController < ActionController::Base
       user.update_attribute(:activated, true)
       user.update_attribute(:activated_at, Time.zone.now)
       user.update_attribute(:activation_token, nil)
-      flash[:success] = params[:email] + " account activated!"
+      flash[:success] = params[:email] + ' account activated!'
     else
-      flash[:danger] = "Invalid activation link!"
+      flash[:danger] = 'Invalid activation link!'
     end
 
     redirect_to signin_path
@@ -43,7 +42,7 @@ class AuthController < ActionController::Base
             redirect_to adviser_dashboard_path(id: @user.adviser.id) and return true
           end
         else
-          @user.errors[:base] << "Invalid code"
+          @user.errors[:base] << 'Invalid code'
         end
       else
         redirect_to signin_path
@@ -60,10 +59,8 @@ class AuthController < ActionController::Base
 
   def signout
     if cookies[:auth_token] && cookies[:auth_token].length > 0
-      user = User.find_by_auth_token!(cookies[:auth_token])
-      if user
-        user.update_attribute(:auth_token, nil)
-      end
+      user = User.find_by!(auth_token: cookies[:auth_token])
+      user&.update_attribute(:auth_token, nil)
       cookies.delete(:auth_token)
     end
     redirect_to signin_path
@@ -87,9 +84,7 @@ class AuthController < ActionController::Base
             if user.enabled?
               @user = user.authenticate(password)
               if @user
-                if @user.two_factor?
-                  redirect_to multi_factor_path(token: @user.auth_token) and return true
-                end
+                redirect_to multi_factor_path(token: @user.auth_token) and return true if @user.two_factor?
 
                 cookies[:auth_token] = @user.auth_token
 
@@ -100,12 +95,12 @@ class AuthController < ActionController::Base
                 end
               else
                 @user = User.new
-                @user.errors[:base] << "Invalid username or password"
+                @user.errors[:base] << 'Invalid username or password'
               end
             else
               cookies.delete(:auth_token)
               @user = User.new
-              @user.errors[:base] << "Account has been locked due to failed login attempts. We have sent an email to " + email + " with instructions to unlock the account."
+              @user.errors[:base] << 'Account has been locked due to failed login attempts. We have sent an email to ' + email + ' with instructions to unlock the account.'
             end
           else
             if user.is_enterprise?
@@ -114,12 +109,12 @@ class AuthController < ActionController::Base
               EnterpriseMailer.account_activation(user, user.adviser.first_name).deliver_now
             end
             @user = User.new
-            @user.errors[:base] << "This account has not been activated, please check your email for the activation link"
+            @user.errors[:base] << 'This account has not been activated, please check your email for the activation link'
           end
         else
-          #user with email and role not found in db
+          # user with email and role not found in db
           @user = User.new
-          @user.errors[:base] << "Invalid username or password"
+          @user.errors[:base] << 'Invalid username or password'
         end
       end
     else
@@ -127,17 +122,15 @@ class AuthController < ActionController::Base
     end
   end
 
-  def signup
-
-  end
+  def signup; end
 
   def enterprise
     if request.post?
       @user = User.new(user_params)
       if verify_recaptcha(model: @user) && @user.save
         EnterpriseMailer.account_activation(@user, @user.enterprise.business_name).deliver_now
-        flash[:success] = "Registration success! Please check your email to activate your account."
-        redirect_to :controller => 'auth', :action => 'signin'
+        flash[:success] = 'Registration success! Please check your email to activate your account.'
+        redirect_to controller: 'auth', action: 'signin'
       else
         render 'enterprise'
       end
@@ -152,8 +145,8 @@ class AuthController < ActionController::Base
       @user = User.new(user_params)
       if verify_recaptcha(model: @user) && @user.save
         EnterpriseMailer.account_activation(@user, @user.adviser.first_name).deliver_now
-        flash[:success] = "Registration success! Please check your email to activate your account."
-        redirect_to :controller => 'auth', :action => 'signin'
+        flash[:success] = 'Registration success! Please check your email to activate your account.'
+        redirect_to controller: 'auth', action: 'signin'
       else
         render 'adviser'
       end
@@ -165,7 +158,7 @@ class AuthController < ActionController::Base
 
   def password_reset
     if request.post?
-      @password_request = PasswordRequest.where(:token => params[:password_request][:token]).first
+      @password_request = PasswordRequest.where(token: params[:password_request][:token]).first
       if @password_request
         @password_request.change_password(params[:password_request][:password], params[:password_request][:password_confirmation])
         unless @password_request.errors.any?
@@ -178,7 +171,7 @@ class AuthController < ActionController::Base
       end
     else
       token = params[:token]
-      @password_request = PasswordRequest.where(:token => token, :used => false).first
+      @password_request = PasswordRequest.where(token: token, used: false).first
       unless @password_request
         flash[:danger] = 'Invalid password reset link.'
         redirect_to signin_path
@@ -194,24 +187,22 @@ class AuthController < ActionController::Base
         flash.now[:warning] = 'Captcha verification failed'
       else
         if email && email.length > 0
-          u = User.find_by_email(email)
+          u = User.find_by(email: email)
           if u
-            exists = PasswordRequest.where(:user_id => u.id, :used => false).first
-            if exists
-              exists.delete
-            end
+            exists = PasswordRequest.where(user_id: u.id, used: false).first
+            exists&.delete
 
             success = PasswordRequest.send_password_reset(email)
             if success
-              puts "Password request success"
+              puts 'Password request success'
             else
-              puts "Password request failed"
+              puts 'Password request failed'
             end
             flash[:info] = 'Check your email for a password reset link.'
             redirect_to signin_path
           else
-            #email doesn't exist
-            #to prevent bad guys using the password reset tool to know if an email exists we'll just say an email has been sent
+            # email doesn't exist
+            # to prevent bad guys using the password reset tool to know if an email exists we'll just say an email has been sent
             flash[:info] = 'Check your email for a password reset link.'
             redirect_to signin_path
           end
@@ -226,10 +217,10 @@ class AuthController < ActionController::Base
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation,
-                                 {enterprise_attributes: [:business_name, :business_form_id, :broad_sector_name_id, :other_broad_sector,
-                                                          :registration_date, :start_of_operations_date, :country,
-                                                          :phone, :referral]},
-                                 {adviser_attributes: [:title, :first_name, :other_names, :date_of_birth, :cell_phone,
-                                                       :country_of_residence]})
+                                 { enterprise_attributes: %i[business_name business_form_id broad_sector_name_id other_broad_sector
+                                                             registration_date start_of_operations_date country
+                                                             phone referral] },
+                                 { adviser_attributes: %i[title first_name other_names date_of_birth cell_phone
+                                                          country_of_residence] })
   end
 end

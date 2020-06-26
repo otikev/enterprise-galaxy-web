@@ -3,37 +3,37 @@ Rails.application.routes.draw do
 
   root 'site#home'
 
-  #Auth controller
-  match '/enterprises/registration', to: 'auth#enterprise', via: [:get, :post]
-  match '/advisers/registration', to: 'auth#adviser', via: [:get, :post]
+  # Auth controller
+  match '/enterprises/registration', to: 'auth#enterprise', via: %i[get post]
+  match '/advisers/registration', to: 'auth#adviser', via: %i[get post]
   match '/registration/success', to: 'auth#signup_success', via: :get
-  match '/signin', to: 'auth#signin', via: [:get, :post]
+  match '/signin', to: 'auth#signin', via: %i[get post]
   match '/signup', to: 'auth#signup', via: :get
-  match '/forgot_password', to: 'auth#forgot_password', via: [:get, :post]
-  match '/password_reset', to: 'auth#password_reset', via: [:get, :post]
+  match '/forgot_password', to: 'auth#forgot_password', via: %i[get post]
+  match '/password_reset', to: 'auth#password_reset', via: %i[get post]
   match '/activate', to: 'auth#activate', via: :get
-  match '/multi_factor', to: 'auth#two_factor', via: [:get, :post]
+  match '/multi_factor', to: 'auth#two_factor', via: %i[get post]
   match '/logout', to: 'auth#signout', via: :get
   match '/unlock', to: 'auth#unlock', via: :get
-  #End Auth controller
+  # End Auth controller
 
-  #Enterprises controller
+  # Enterprises controller
   match '/enterprise_profile', to: 'enterprises#show', via: 'get'
   match '/enterprise_dashboard', to: 'enterprises#dashboard', via: 'get'
-  match '/enterprise_edit_profile', to: 'enterprises#edit_profile', via: [:get, :post]
-  #End Enterprises controller
+  match '/enterprise_edit_profile', to: 'enterprises#edit_profile', via: %i[get post]
+  # End Enterprises controller
 
-  #Advisers controller
+  # Advisers controller
   match '/adviser_profile', to: 'advisers#show', via: 'get'
   match '/adviser_dashboard', to: 'advisers#dashboard', via: 'get'
-  match '/adviser_edit_profile', to: 'advisers#edit_profile', via: [:get, :post]
-  #End Advisers controller
+  match '/adviser_edit_profile', to: 'advisers#edit_profile', via: %i[get post]
+  # End Advisers controller
 
-  #Content ContentController
+  # Content ContentController
   match '/all_content', to: 'content#all', via: 'get'
-  #End Content ContentController
+  # End Content ContentController
 
-  #Other
+  # Other
   match '/countdown', to: 'site#countdown', via: 'get'
-  #End Other
+  # End Other
 end
