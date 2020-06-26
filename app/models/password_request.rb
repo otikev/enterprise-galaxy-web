@@ -15,22 +15,22 @@ class PasswordRequest < ApplicationRecord
   require 'utils'
   belongs_to :user
 
-  validates :user, :presence => true
-  validates :expiry, :presence => true
-  validates :token, :presence => true
+  validates :user, presence: true
+  validates :expiry, presence: true
+  validates :token, presence: true
 
   attr_accessor :password, :password_confirmation
 
-  def change_password(password,password_confirmation)
+  def change_password(password, password_confirmation)
     if password == password_confirmation
       user.change_password(password)
       if user.errors.any?
-        user.errors.each do |k,v|
-          errors.add(k,v)
+        user.errors.each do |k, v|
+          errors.add(k, v)
         end
       else
         self.used = true
-        self.save
+        save
       end
     else
       errors.add(:base, 'The password and password confirmation do not match!')
@@ -39,7 +39,7 @@ class PasswordRequest < ApplicationRecord
 
   def self.delete_expired_requests
     now = DateTime.current
-    requests = PasswordRequest.where('expiry < ?',now)
+    requests = PasswordRequest.where('expiry < ?', now)
     count = requests.count
     requests.delete_all
     count
@@ -47,9 +47,9 @@ class PasswordRequest < ApplicationRecord
 
   def self.send_password_reset(email)
     success = false
-    user = User.where(:email => email).first
+    user = User.where(email: email).first
     if user
-      puts "found user with email "+email
+      puts 'found user with email ' + email
       begin
         request_pwd = PasswordRequest.new
         request_pwd.user = user
@@ -57,7 +57,7 @@ class PasswordRequest < ApplicationRecord
         request_pwd.expiry = (DateTime.current + 24.hours).to_datetime
         request_pwd.save!
 
-        puts "sending password recovery email..."
+        puts 'sending password recovery email...'
         EnterpriseMailer.password_reset(request_pwd).deliver_now
         success = true
       rescue Exception => e

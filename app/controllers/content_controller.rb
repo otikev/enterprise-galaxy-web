@@ -1,7 +1,3 @@
 class ContentController < ApplicationController
-
-  def all
-    
-  end
-
+  def all; end
 end

@@ -26,62 +26,32 @@
 class Adviser < ApplicationRecord
   belongs_to :user
 
-  validates :title, :presence =>true
-  validates :first_name, :presence =>true
-  validates :other_names, :presence =>true
-  validates :date_of_birth, :presence =>true
-  validates :cell_phone, :presence =>true
-  validates :country_of_residence, :presence =>true
+  validates :title, presence: true
+  validates :first_name, presence: true
+  validates :other_names, presence: true
+  validates :date_of_birth, presence: true
+  validates :cell_phone, presence: true
+  validates :country_of_residence, presence: true
 
   def profile_completion_status
     total_data_points = 15.0
     completed_data_points = 0
-    if self.current_employer != nil
-      completed_data_points+=1
-    end
-    if self.employment_status != nil
-      completed_data_points+=1
-    end
-    if self.preferred_mode_of_comms != nil
-      completed_data_points+=1
-    end
-    if self.work_email != nil
-      completed_data_points+=1
-    end
-    if self.personal_email != nil
-      completed_data_points+=1
-    end
-    if self.cell_phone != nil
-      completed_data_points+=1
-    end
-    if self.city != nil
-      completed_data_points+=1
-    end
-    if self.po_box != nil
-      completed_data_points+=1
-    end
-    if self.country_of_residence != nil
-      completed_data_points+=1
-    end
-    if self.date_of_birth != nil
-      completed_data_points+=1
-    end
-    if self.gender != nil
-      completed_data_points+=1
-    end
-    if self.other_names != nil
-      completed_data_points+=1
-    end
-    if self.first_name != nil
-      completed_data_points+=1
-    end
-    if self.title != nil
-      completed_data_points+=1
-    end
-    if self.nationality != nil
-      completed_data_points+=1
-    end
+    completed_data_points += 1 unless current_employer.nil?
+    completed_data_points += 1 unless employment_status.nil?
+    completed_data_points += 1 unless preferred_mode_of_comms.nil?
+    completed_data_points += 1 unless work_email.nil?
+    completed_data_points += 1 unless personal_email.nil?
+    completed_data_points += 1 unless cell_phone.nil?
+    completed_data_points += 1 unless city.nil?
+    completed_data_points += 1 unless po_box.nil?
+    completed_data_points += 1 unless country_of_residence.nil?
+    completed_data_points += 1 unless date_of_birth.nil?
+    completed_data_points += 1 unless gender.nil?
+    completed_data_points += 1 unless other_names.nil?
+    completed_data_points += 1 unless first_name.nil?
+    completed_data_points += 1 unless title.nil?
+    completed_data_points += 1 unless nationality.nil?
 
-    ((completed_data_points/total_data_points)*100).to_int
+    ((completed_data_points / total_data_points) * 100).to_int
   end
 end

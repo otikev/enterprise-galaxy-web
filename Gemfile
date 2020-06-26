@@ -16,13 +16,13 @@ gem 'webpacker', '~> 4.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.7'
-gem "recaptcha"
-gem 'jquery-rails'
 gem 'bootstrap-sass'
+gem 'font-awesome-rails'
 gem 'google-authenticator-rails'
-gem 'mailjet', :git => 'https://github.com/mailjet/mailjet-gem.git'
-gem "font-awesome-rails"
+gem 'jbuilder', '~> 2.7'
+gem 'jquery-rails'
+gem 'mailjet', git: 'https://github.com/mailjet/mailjet-gem.git'
+gem 'recaptcha'
 # Enforce Rails best practices and coding conventions
 gem 'rubocop-rails', require: false
 
@@ -40,19 +40,19 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '~> 3.2'
   gem 'binding_of_caller'
+  gem 'listen', '~> 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'annotate' # https://github.com/ctran/annotate_models
+  gem 'better_errors' # https://github.com/charliesome/better_errors
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'better_errors' #https://github.com/charliesome/better_errors
-  gem 'annotate' #https://github.com/ctran/annotate_models
 end
 
 group :test do
@@ -64,4 +64,4 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
