@@ -42,7 +42,5 @@ Rails.application.routes.draw do
 
   #Other
   match '/countdown', to: 'site#countdown', via: 'get'
-  match '/theme', to: 'enterprises#theme', via: 'get'
-  match '/dashboard', to: 'enterprises#dashboard', via: 'get'
   #End Other
 end
