@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_24_083115) do
+
+ActiveRecord::Schema.define(version: 2020_06_24_130105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 2020_06_24_083115) do
     t.string "brief_service_description"
     t.integer "num_employees_fulltime"
     t.integer "num_employees_parttime"
+    t.string "other_broad_sector"
     t.index ["broad_sector_name_id"], name: "index_enterprises_on_broad_sector_name_id"
     t.index ["business_form_id"], name: "index_enterprises_on_business_form_id"
   end
